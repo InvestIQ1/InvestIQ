@@ -1,0 +1,280 @@
+.addForm,
+.addForm__background {
+  box-sizing: border-box;
+}
+
+.arrorIcon {
+  color: #ff751d;
+  width: 24px;
+  height: 24px;
+}
+.calendIcon,
+.calculateIcon {
+  color: #52555f;
+  width: 20px;
+  height: 20px;
+}
+
+.addForm {
+  width: 100%;
+  // padding: 15px 19px 43px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // &__datawForm {
+  //   display: none;
+  // }
+  &__inputs {
+    stroke-width: 2px;
+    stroke: #fff;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__descr {
+    background-color: #f5f6fb;
+    padding: 17px 0 17px 19px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    border: 2px #fff solid;
+    color: #c7ccdc;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 20px;
+    outline: none;
+    &::placeholder {
+      color: #c7ccdc;
+    }
+  }
+  &__selectGoods {
+    background-color: #f5f6fb;
+    padding: 17px 0 17px 19px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    border: 2px #fff solid;
+    border-bottom-right-radius: 20px;
+    letter-spacing: 0.02em;
+    color: #c7ccdc;
+    min-width: 282px;
+  }
+  &__btn1 {
+    border-radius: 16px;
+    width: 125px;
+    height: 44px;
+    background: #ff751d;
+    padding: 12px 24px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    border: none;
+  }
+  &__btn2 {
+    width: 125px;
+    height: 44px;
+    padding: 12px 24px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #52555f;
+    box-shadow: 1px 2px 5px 0 rgba(170, 178, 197, 0.4);
+    background: #f5f6fb;
+    border-radius: 16px;
+    border: none;
+  }
+  &__btns {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+  }
+  &__prize {
+    width: 183px;
+    height: 44px;
+    border: 2px #fff solid;
+    background-color: #f5f6fb;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20px;
+  }
+  &__prizeCounter {
+    width: 100px;
+    height: 30px;
+    border: none;
+    outline: none;
+    background-color: #f5f6fb;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: right;
+    color: #000;
+    padding-right: 30px;
+  }
+  &__background {
+    width: 100%;
+    background: #f5f6fb;
+    border-bottom-left-radius: 100px;
+    padding: 15px 19px 43px;
+    display: flex;
+    justify-content: center;
+  }
+  &__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__separate {
+    width: 2px;
+    height: 40px;
+    background: #fff;
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .addForm {
+    &__datawForm {
+      display: flex;
+      align-items: baseline;
+    }
+    &__btns {
+      margin-top: 0;
+    }
+    &__prizeCounter {
+      margin: 0;
+      padding: 0;
+      width: 60px;
+      text-align: center;
+      background-color: #fff;
+    }
+    &__top {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    &__prize {
+      padding: 12px 20px 12px 0;
+      background-color: #fff;
+      border: 2px #f5f6fb solid;
+      width: 104px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left: none;
+      margin-bottom: 15px;
+      // height: 15px;
+      height: 26px;
+    }
+    &__form {
+      display: flex;
+      flex-direction: row;
+      margin-left: 43px;
+    }
+    &__selectGoods {
+      box-sizing: border-box;
+      min-width: 0;
+      width: 170px;
+      background-color: #fff;
+      border: 2px #f5f6fb solid;
+      border-radius: 0;
+      border-left: none;
+    }
+    &__descr {
+      box-sizing: border-box;
+      width: 192px;
+      background-color: #fff;
+      border: 2px #f5f6fb solid;
+      border-top-right-radius: 0;
+    }
+    &__background {
+      flex-direction: row;
+      background-color: #fff;
+      padding: 28px 30px 30px 31px;
+    }
+    &__data {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    &__inputs {
+      flex-direction: row;
+    }
+    &__paragraf {
+      font-family: "Roboto", sans-serif;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #52555f;
+    }
+  }
+
+  .addForm .container {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    // gap: 100px;
+  }
+}
+
+// @media (min-width: 929px) {
+//   .addForm {
+//     &__form {
+//       margin-left: 100px;
+//     }
+//   }
+// }
+
+@media (min-width: 1200px) {
+  .addForm {
+    flex-direction: row;
+    &__descr {
+      width: 288px;
+    }
+    &__selectGoods {
+      width: 188px;
+    }
+    &__prize {
+      width: 125px;
+    }
+    &__form {
+      margin-left: 35px;
+    }
+    &__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+    }
+    &__btns {
+      margin-bottom: 15px;
+      margin-left: 35px;
+    }
+    // &__datawForm {
+    //   display: none;
+    // }
+    &__paragraf {
+      margin-bottom: 8px;
+    }
+    &__data {
+      margin-bottom: 13px;
+    }
+  }
+}
