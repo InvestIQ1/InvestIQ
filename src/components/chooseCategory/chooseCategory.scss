@@ -1,0 +1,76 @@
+.Category{
+    font-family: "Roboto";
+    border-radius: 30px;
+width: 100%;
+height:auto;
+box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
+background: #fff;
+display: flex;
+flex-direction: column;
+justify-self: center;
+align-items: center;
+padding-top: 20px;
+padding-bottom: 30px;
+
+&__choser{
+    display: flex;
+    gap: 10px;
+}
+
+&__button{
+    background: none;
+    border: none;
+}
+
+&__text{
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+text-align: center;
+color: #000;
+}
+
+&__list {
+    width: calc(84px * 6 + 20px * 5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+&__item{
+    width: 84px;
+height: 106px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+&__money{
+font-weight: 400;
+font-size: 12px;
+letter-spacing: 0.04em;
+text-transform: uppercase;
+text-align: center;
+color: #52555f;
+}
+
+&__photo{
+    height: 56px;
+    width: 56px;
+    border: aquamarine;
+}
+
+&__name{
+font-family: var(--font-family);
+font-weight: 400;
+font-size: 12px;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+text-align: center;
+color: #52555f;
+}
+}

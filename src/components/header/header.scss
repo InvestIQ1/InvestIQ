@@ -1,0 +1,59 @@
+.header{
+background-color: aqua;
+    font-family: "Roboto";
+    background: #fff;
+    height:56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__user-inetrface{
+        width: 212px;
+height: 36px;
+display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__profile-part{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+             border-right: 2px solid #e0e5eb;
+             padding-right: 20px;
+    }
+
+    &__profile-picture{
+        width: 32px;
+height: 32px;
+background-color: #52555f;
+border-radius: 50%;
+    }
+
+    &__logo{
+        width:91px;
+        height:33px;
+   
+    }
+
+
+&__profile-name{
+font-weight: 400;
+font-size: 12px;
+letter-spacing: 0.04em;
+text-align: right;
+color: #52555f;
+}
+
+&__log-out{
+font-weight: 400;
+font-size: 12px;
+letter-spacing: 0.04em;
+text-decoration: underline;
+text-decoration-skip-ink: none;
+color: #52555f;
+margin-left: 20px;
+        cursor: pointer;
+}
+}

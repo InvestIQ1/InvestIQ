@@ -1,0 +1,43 @@
+.Period{
+    font-family: "Roboto";
+    width: 134px;
+height: 47px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+gap: 12px;
+
+
+    &__text{
+font-weight: 400;
+font-size: 12px;
+letter-spacing: 0.04em;
+text-align: center;
+color: rgba(82, 85, 95, 0.7);
+    }
+
+    &__date{
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+text-align: center;
+color: #000;
+    }
+
+    &__box{
+        display: flex;
+        gap: 10px;
+    }
+
+    &__button{
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+h2, p{
+    margin: 0px;
+}
