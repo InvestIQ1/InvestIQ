@@ -1,10 +1,27 @@
 import pins from "../../assets/pins_desktop.png";
 import twoPins from "../../assets/twoPins_desktop.png";
 import "./AuthPage.scss";
+import { createUser } from "../../redux/Auth/authOperation";
+import { useAppDispatch } from "../../redux/dispatchHook";
+import { Header } from "../../components/header/Header";
+
 
 export default function AuthPage() {
+    const dispatch = useAppDispatch();
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const email = formData.get("email") as string;
+        const password = formData.get("password") as string;
+
+        dispatch(createUser({ email, password }));
+    };
+
     return (
-        <div className="auth-page">
+       
+        <div className="auth-page"> 
+        <Header />
             <div className="auth-page__left">
                 <img className="auth-page__logo-top" src={pins} alt="InvestIQ" />
                 <div className="auth-page__title-container">
@@ -14,7 +31,7 @@ export default function AuthPage() {
                 <img className="auth-page__logo-bottom" src={twoPins} alt="InvestIQ" />
             </div>
             <div className="auth-page__right">
-                <form className="auth-form">
+                <form className="auth-form" onSubmit={handleSubmit}>
                     <p className="auth-form__social-text">
                         Ви можете авторизуватися за допомогою Google або GitHub
                     </p>
@@ -57,6 +74,7 @@ export default function AuthPage() {
                         className="auth-form__input"
                         id="email"
                         type="email"
+                        name="email"
                         placeholder="your@email.com"
                     />
                     <label className="auth-form__label" htmlFor="password">
@@ -66,6 +84,7 @@ export default function AuthPage() {
                         className="auth-form__input"
                         id="password"
                         type="password"
+                        name="password"
                         placeholder="Password"
                     />
                     <div className="auth-form__container-buttons">
