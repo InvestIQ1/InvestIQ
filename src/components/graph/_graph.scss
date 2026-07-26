@@ -1,0 +1,23 @@
+#myPlot {
+    margin: 0 auto;
+    touch-action: none;
+    width: 100%;
+    max-width: 282px;
+    height: 520px;
+
+    @media screen and (min-width: 768px) {
+    max-width: 750px;
+    height: 400px;
+  }
+  @media screen and (min-width: 1200px) {
+    max-width: 1000px;
+    height: 400px;
+  }
+}
+
+.container {
+  @media screen and (min-width: 768px) {
+    border: 2px solid #F5F6FB;
+    border-radius: 20px;
+  }
+}
