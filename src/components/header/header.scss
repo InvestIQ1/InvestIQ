@@ -1,0 +1,84 @@
+.header {
+  font-family: "Roboto";
+  background: #fff;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  &__logo {
+    width: 99px;
+    height: 33px;
+  }
+
+  &__profile-picture {
+    width: 32px;
+    height: 32px;
+    background-color: #F5F6FA;
+    border-radius: 50%;
+  }
+  &__profile-name {
+    display: none;
+    visibility: hidden;
+  }
+  &__log-out {
+    display: none;
+    visibility: hidden;
+  }
+
+  &__exit{
+    display: block;
+    visibility: visible;
+  }
+
+  &__profile-part {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
+      padding-right: 20px;
+    }
+
+  @media screen and (min-width: 768px) {
+    &__user-inetrface {
+      width: 212px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__profile-part {
+        gap: 10px;
+      border-right: 2px solid #e0e5eb;
+    }
+
+    &__profile-name {
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-align: right;
+      color: #52555f;
+      display: block;
+      visibility: visible;
+    }
+
+    &__log-out {
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-decoration: underline;
+      text-decoration-skip-ink: none;
+      color: #52555f;
+      margin-left: 20px;
+      display: block;
+      visibility: visible;
+      cursor: pointer;
+    }
+
+    &__exit{
+        display: none;
+        visibility: hidden;
+    }
+  }
+}
