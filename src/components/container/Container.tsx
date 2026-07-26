@@ -1,5 +1,6 @@
-import type { JSX } from "react/jsx-runtime"
-
-export const Container = (children: JSX.Element) => {
+// import type { JSX } from "react/jsx-runtime"
+import type { PropsWithChildren } from "react"
+import './container.scss'
+export const Container = ({children}: PropsWithChildren) => {
     return <div className="container">{children}</div>
 }
