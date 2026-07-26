@@ -1,14 +1,23 @@
 #myPlot {
-    width: 100%;
-    max-width: 950px;
-    height: 400px;
     margin: 0 auto;
     touch-action: none;
-    // outline: solid red;
+    width: 100%;
+    max-width: 282px;
+    height: 520px;
+
+    @media screen and (min-width: 768px) {
+    max-width: 750px;
+    height: 400px;
+  }
+  @media screen and (min-width: 1200px) {
+    max-width: 1000px;
+    height: 400px;
+  }
 }
 
 .container {
-  border: 2px solid #F5F6FB;
-  border-radius: 20px;
-
+  @media screen and (min-width: 768px) {
+    border: 2px solid #F5F6FB;
+    border-radius: 20px;
+  }
 }
