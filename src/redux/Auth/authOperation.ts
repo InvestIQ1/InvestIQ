@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   GithubAuthProvider,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { authFireBase } from "../../firebase/firebase";
 
@@ -90,5 +91,25 @@ export const loginUser = createAsyncThunk<AuthUser, AuthPayload>(
       displayName: userCredential.user.displayName,
       photoURL: userCredential.user.photoURL,
     };
+  }
+);
+
+export const checkAuth = createAsyncThunk<AuthUser | null>(
+  "auth/checkAuth",
+  async () => {
+    return new Promise((resolve) => {
+      onAuthStateChanged(authFireBase, (user) => {
+        if(user){
+          resolve({
+            uid:user.uid,
+            email:user.email,
+            displayName:user.displayName,
+            photoURL:user.photoURL,
+          });
+        }else{
+          resolve(null);
+        }
+      });
+    });
   }
 );

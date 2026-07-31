@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createUser, loginWithGitHub, loginWithGoogle, type AuthUser } from "./authOperation";
+import { checkAuth, createUser, loginWithGitHub, loginWithGoogle, type AuthUser } from "./authOperation";
 
 const initialState: AuthState = {
     user: null,
@@ -55,8 +55,14 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.error =
                     action.error.message ?? "Помилка входу через GitHub";
-            });
+            })
+            .addCase(checkAuth.fulfilled,(state,action)=>{
+    state.user = action.payload;
+    console.log(state.user)
+  });
     },
 });
+
+
 
 export default authSlice.reducer;
