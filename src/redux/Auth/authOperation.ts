@@ -5,8 +5,17 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   GithubAuthProvider,
+  onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 import { authFireBase } from "../../firebase/firebase";
+
+type RegisterPayload = {
+  name:string;
+  email:string;
+  password:string;
+};
+
 
 type AuthPayload = {
   email: string;
@@ -57,19 +66,23 @@ export const loginWithGitHub = createAsyncThunk<AuthUser>(
   }
 );
 
-export const createUser = createAsyncThunk<AuthUser, AuthPayload>(
+export const createUser = createAsyncThunk<AuthUser, RegisterPayload>(
   "auth/createUser",
-  async ({ email, password }) => {
+  async ({ name, email, password }) => {
     const userCredential = await createUserWithEmailAndPassword(
       authFireBase,
       email,
       password
     );
 
+    await updateProfile(userCredential.user, {
+      displayName: name,
+    });
+
     return {
       uid: userCredential.user.uid,
       email: userCredential.user.email,
-      displayName: userCredential.user.displayName,
+      displayName: name,
       photoURL: userCredential.user.photoURL,
     };
   }
@@ -90,5 +103,25 @@ export const loginUser = createAsyncThunk<AuthUser, AuthPayload>(
       displayName: userCredential.user.displayName,
       photoURL: userCredential.user.photoURL,
     };
+  }
+);
+
+export const checkAuth = createAsyncThunk<AuthUser | null>(
+  "auth/checkAuth",
+  async () => {
+    return new Promise((resolve) => {
+      onAuthStateChanged(authFireBase, (user) => {
+        if(user){
+          resolve({
+            uid:user.uid,
+            email:user.email,
+            displayName:user.displayName,
+            photoURL:user.photoURL,
+          });
+        }else{
+          resolve(null);
+        }
+      });
+    });
   }
 );
