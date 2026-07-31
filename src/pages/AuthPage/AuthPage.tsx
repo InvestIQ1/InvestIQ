@@ -33,29 +33,31 @@ if(loginWithGoogle.fulfilled.match(result)){
 }
 };
 
-  const handleLogin = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+const handleLogin = async (event:FormEvent<HTMLFormElement>)=>{
+  event.preventDefault();
+  const formData=new FormData(event.currentTarget);
+  const email=formData.get("email");
+  const password=formData.get("password");
+  if(typeof email!=="string"||typeof password!=="string"){
+    return;
+  }
+  const result= await dispatch(loginUser({email,password}));
 
-    const formData = new FormData(event.currentTarget);
-
-    const email = formData.get("email");
-    const password = formData.get("password");
-
-    if (typeof email !== "string" || typeof password !== "string") {
-      return;
-    }
-
-    dispatch(loginUser({ email, password }));
-  };
+  if(loginUser.fulfilled.match(result)){
+    navigate("/home");
+  }
+};
 
   const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    const name = formData.get("name");
     const email = formData.get("email");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword");
 
     if (
+      typeof name !== "string" ||
       typeof email !== "string" ||
       typeof password !== "string" ||
       typeof confirmPassword !== "string"
@@ -67,7 +69,11 @@ if(loginWithGoogle.fulfilled.match(result)){
       return;
     }
 
-    const result = dispatch(createUser({email,password}));
+   const result = await dispatch(createUser({
+  name,
+  email,
+  password,
+}));
 
 if(createUser.fulfilled.match(result)){
   navigate("/home");

@@ -6,8 +6,16 @@ import {
   GoogleAuthProvider,
   GithubAuthProvider,
   onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 import { authFireBase } from "../../firebase/firebase";
+
+type RegisterPayload = {
+  name:string;
+  email:string;
+  password:string;
+};
+
 
 type AuthPayload = {
   email: string;
@@ -58,19 +66,23 @@ export const loginWithGitHub = createAsyncThunk<AuthUser>(
   }
 );
 
-export const createUser = createAsyncThunk<AuthUser, AuthPayload>(
+export const createUser = createAsyncThunk<AuthUser, RegisterPayload>(
   "auth/createUser",
-  async ({ email, password }) => {
+  async ({ name, email, password }) => {
     const userCredential = await createUserWithEmailAndPassword(
       authFireBase,
       email,
       password
     );
 
+    await updateProfile(userCredential.user, {
+      displayName: name,
+    });
+
     return {
       uid: userCredential.user.uid,
       email: userCredential.user.email,
-      displayName: userCredential.user.displayName,
+      displayName: name,
       photoURL: userCredential.user.photoURL,
     };
   }
