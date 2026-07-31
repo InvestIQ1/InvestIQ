@@ -1,6 +1,5 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {createUser} from "./authOperation";
-import type { User } from "firebase/auth/web-extension";
+import { createSlice } from "@reduxjs/toolkit";
+import { createUser, loginWithGitHub, loginWithGoogle, type AuthUser } from "./authOperation";
 
 const initialState: AuthState = {
     user: null,
@@ -8,7 +7,7 @@ const initialState: AuthState = {
     error: null,
 };
 interface AuthState {
-    user: User | null;
+    user: AuthUser | null;
     isLoading: boolean;
     error: string | undefined | null;
 }
@@ -29,8 +28,35 @@ const authSlice = createSlice({
             .addCase(createUser.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.error.message;
+            })
+            .addCase(loginWithGoogle.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(loginWithGoogle.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.user = action.payload;
+            })
+            .addCase(loginWithGoogle.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error =
+                    action.error.message ?? "Помилка входу через Google";
+            })
+
+            .addCase(loginWithGitHub.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(loginWithGitHub.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.user = action.payload;
+            })
+            .addCase(loginWithGitHub.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error =
+                    action.error.message ?? "Помилка входу через GitHub";
             });
-        },
-    });
+    },
+});
 
 export default authSlice.reducer;

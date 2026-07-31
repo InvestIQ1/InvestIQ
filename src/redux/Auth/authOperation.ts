@@ -1,24 +1,94 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {authFireBase} from "../../firebase/firebase";
-interface CreateUserPayload {
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+} from "firebase/auth";
+import { authFireBase } from "../../firebase/firebase";
+
+type AuthPayload = {
   email: string;
   password: string;
+};
+
+export interface AuthUser {
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+  photoURL: string | null;
 }
-export const createUser = createAsyncThunk(
-  'auth/createUser',
-  async ({ email, password }: CreateUserPayload) => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(authFireBase, email, password);
-      console.log(userCredential.user);
-      return {
-        uid: userCredential.user.uid,
-        email: userCredential.user.email,
-        createdAt: new Date(userCredential.user.metadata.creationTime),
-      };
-    } catch (error) {
-      console.error("Error creating user:", error);
-      throw error;
-    }
+
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
+
+export const loginWithGoogle = createAsyncThunk<AuthUser>(
+  "auth/loginWithGoogle",
+  async () => {
+    const result = await signInWithPopup(
+      authFireBase,
+      googleProvider
+    );
+
+    return {
+      uid: result.user.uid,
+      email: result.user.email,
+      displayName: result.user.displayName,
+      photoURL: result.user.photoURL,
+    };
+  }
+);
+
+export const loginWithGitHub = createAsyncThunk<AuthUser>(
+  "auth/loginWithGitHub",
+  async () => {
+    const result = await signInWithPopup(
+      authFireBase,
+      githubProvider
+    );
+
+    return {
+      uid: result.user.uid,
+      email: result.user.email,
+      displayName: result.user.displayName,
+      photoURL: result.user.photoURL,
+    };
+  }
+);
+
+export const createUser = createAsyncThunk<AuthUser, AuthPayload>(
+  "auth/createUser",
+  async ({ email, password }) => {
+    const userCredential = await createUserWithEmailAndPassword(
+      authFireBase,
+      email,
+      password
+    );
+
+    return {
+      uid: userCredential.user.uid,
+      email: userCredential.user.email,
+      displayName: userCredential.user.displayName,
+      photoURL: userCredential.user.photoURL,
+    };
+  }
+);
+
+export const loginUser = createAsyncThunk<AuthUser, AuthPayload>(
+  "auth/loginUser",
+  async ({ email, password }) => {
+    const userCredential = await signInWithEmailAndPassword(
+      authFireBase,
+      email,
+      password
+    );
+
+    return {
+      uid: userCredential.user.uid,
+      email: userCredential.user.email,
+      displayName: userCredential.user.displayName,
+      photoURL: userCredential.user.photoURL,
+    };
   }
 );
