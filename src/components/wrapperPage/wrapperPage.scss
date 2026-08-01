@@ -1,0 +1,41 @@
+.wrapper {
+  position: relative;
+  margin-top: 40px;
+  background: red;
+
+  &__content {
+    background: white;
+    border-radius: 30px;
+    padding: 40px;
+    min-height: 600px;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 10px;
+    margin-left: 30px;
+
+    button {
+      width: 140px;
+      height: 50px;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 20px 20px 0 0;
+
+      background: #f5f6fb;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #eceef5;
+    }
+
+    button.active {
+      background: white;
+      color: #ff6b08;
+    }
+  }
+}
