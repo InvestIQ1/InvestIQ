@@ -3,15 +3,17 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaCalculator } from "react-icons/fa";
 import { Container } from "../container/Container";
 import { useEffect, useState } from "react";
-import { Dispatch } from "redux";
+import { useAppDispatch } from "../../redux/dispatchHook";
 import "./addForm.scss";
 import { addTransaction } from "../../redux/Transaction/transactionOparation";
-import { useDispatch } from "react-redux";
 
-export const AddForm = () => {
+export const AddForm: React.FC = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [category, setCategory] = useState("");
+  const [descr, setDescr] = useState("");
   const [price, setPrice] = useState<number | "">("");
-  const dispatch = useDispatch()
+
+  const dispatch = useAppDispatch();
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -22,61 +24,34 @@ export const AddForm = () => {
     };
   }, []);
 
+  const handleReset = () => {
+    setCategory("");
+    setDescr("");
+    setPrice("");
+  };
+
+  const handleSubmit = async () => {
+    if (!descr || !category || price === "") {
+      alert("Будь ласка, заповніть усі поля.");
+      return;
+    }
+
+    await dispatch(
+      addTransaction({
+        category,
+        descr,
+        sum: Number(price),
+      }),
+    );
+
+    handleReset();
+  };
+
   const dateNow = new Date();
   const day = String(dateNow.getDate()).padStart(2, "0");
   const month = String(dateNow.getMonth() + 1).padStart(2, "0");
   const year = dateNow.getFullYear();
 
-  const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    switch (e.target.value) {
-      case "transport":
-        setPrice(150);
-        break;
-
-      case "products":
-        setPrice(850);
-        break;
-
-      case "health":
-        setPrice(600);
-        break;
-
-      case "alcohol":
-        setPrice(450);
-        break;
-
-      case "entertainment":
-        setPrice(700);
-        break;
-
-      case "home":
-        setPrice(1200);
-        break;
-
-      case "technology":
-        setPrice(15000);
-        break;
-
-      case "utilities":
-        setPrice(2500);
-        break;
-
-      case "sport":
-        setPrice(900);
-        break;
-
-      case "education":
-        setPrice(1800);
-        break;
-
-      case "other":
-        setPrice(500);
-        break;
-
-      default:
-        setPrice(0);
-    }
-  };
   return (
     <div className="addForm">
       <div className="addForm__background">
@@ -95,18 +70,21 @@ export const AddForm = () => {
                   </div>
                 )}
               </div>
-              <form onSubmit={() => dispatch(addTransaction())} className="addForm__form">
+              <form className="addForm__form">
                 <div className="addForm__inputs">
                   <input
                     className="addForm__descr"
+                    value={descr}
+                    onChange={(e) => setDescr(e.target.value)}
                     placeholder="Опис товару"
                     type="text"
                   />
 
                   <select
                     className="addForm__selectGoods"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
                     defaultValue=""
-                    onChange={handleCategory}
                   >
                     <option value="" disabled>
                       Категорія товару
@@ -129,8 +107,17 @@ export const AddForm = () => {
                 <div className="addForm__prize">
                   <input
                     className="addForm__prizeCounter"
+                    type="number"
                     value={price}
-                    readOnly
+                    onChange={(e) => {
+                      const value = e.target.value;
+
+                      if (value === "") {
+                        setPrice("");
+                      } else {
+                        setPrice(Number(value));
+                      }
+                    }}
                     placeholder={isMobile ? "00.00 UAH" : "00.00"}
                   />
 
@@ -143,9 +130,15 @@ export const AddForm = () => {
 
             {!isMobile && (
               <div className="addForm__btns">
-                <button className="addForm__btn1">Ввести</button>
+                <button onClick={handleSubmit} className="addForm__btn1">
+                  Ввести
+                </button>
 
-                <button className="addForm__btn2" type="reset">
+                <button
+                  onClick={handleReset}
+                  className="addForm__btn2"
+                  type="button"
+                >
                   Очистити
                 </button>
               </div>
@@ -157,9 +150,15 @@ export const AddForm = () => {
       {isMobile && (
         <Container>
           <div className="addForm__btns">
-            <button className="addForm__btn1">Ввести</button>
+            <button onClick={handleSubmit} className="addForm__btn1">
+              Ввести
+            </button>
 
-            <button className="addForm__btn2" type="reset">
+            <button
+              onClick={handleReset}
+              className="addForm__btn2"
+              type="button"
+            >
               Очистити
             </button>
           </div>
