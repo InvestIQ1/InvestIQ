@@ -7,6 +7,7 @@ import {
   GithubAuthProvider,
   onAuthStateChanged,
   updateProfile,
+  signOut,
 } from "firebase/auth";
 import { authFireBase } from "../../firebase/firebase";
 
@@ -125,3 +126,10 @@ export const checkAuth = createAsyncThunk<AuthUser | null>(
     });
   }
 );
+
+export const logoutUser = createAsyncThunk<void>(
+  "auth/logoutUser",
+  async () => {
+    await signOut(authFireBase);
+  }
+); 
