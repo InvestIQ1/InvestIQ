@@ -1,13 +1,13 @@
-import { AddForm } from "../../components/addForm/AddForm";
-import { WrapperPage } from "../../components/wrapperPage/wrapperPage";
+// import { AddForm } from "../../components/addForm/AddForm";
+import { WrapperPage } from "../../components/wrapperPage/WrapperPage";
+import { Header } from "../../components/header/Header";
 
 export default function HomePage(){
   return (
-    <div>
-      <AddForm />
+    <> 
+      <Header />
       <WrapperPage />
-      <h1>InvestIQ</h1>
-      <p>Ви успішно увійшли</p>
-    </div>
+    </>
+      
   );
 }
