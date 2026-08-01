@@ -3,15 +3,14 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaCalculator } from "react-icons/fa";
 import { Container } from "../container/Container";
 import { useEffect, useState } from "react";
-import { Dispatch } from "redux";
 import "./addForm.scss";
-import { addTransaction } from "../../redux/Transaction/transactionOparation";
-import { useDispatch } from "react-redux";
+// import { addTransaction } from "../../redux/Transaction/transactionOparation";
+// import { useDispatch } from "react-redux";
 
 export const AddForm = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [price, setPrice] = useState<number | "">("");
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -95,7 +94,7 @@ export const AddForm = () => {
                   </div>
                 )}
               </div>
-              <form onSubmit={() => dispatch(addTransaction())} className="addForm__form">
+              <form className="addForm__form">
                 <div className="addForm__inputs">
                   <input
                     className="addForm__descr"
