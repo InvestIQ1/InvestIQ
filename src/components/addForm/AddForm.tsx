@@ -38,6 +38,7 @@ export const AddForm: React.FC = () => {
 
     await dispatch(
       addTransaction({
+        
         category,
         descr,
         sum: Number(price),
