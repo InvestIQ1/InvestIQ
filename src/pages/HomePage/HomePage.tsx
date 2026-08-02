@@ -6,7 +6,7 @@ import { useAppDispatch } from "../../redux/dispatchHook";
 import { useAppSelector } from "../../redux/dispatchHook";
 import { MonthStatistic } from '../../components/monthStatistic/monthStatictic';
 import { Header } from "../../components/header/Header";
-import {PeriodDate} from "../../components/periodDate/PeriodDate";
+
 export default function HomePage() {
   const userData = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
@@ -19,7 +19,6 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <PeriodDate />
       <WrapperPage />
       <MonthStatistic />
     </>
