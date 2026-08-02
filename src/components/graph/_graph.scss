@@ -4,6 +4,8 @@
     width: 100%;
     max-width: 282px;
     height: 520px;
+    background-color: var(--background);
+    
 
     @media screen and (min-width: 768px) {
     max-width: 750px;
@@ -15,9 +17,10 @@
   }
 }
 
-.container {
+.container2 {
+  background-color: var(--background);
   @media screen and (min-width: 768px) {
-    border: 2px solid #F5F6FB;
+    border: 2px solid var(--background);
     border-radius: 20px;
   }
 }

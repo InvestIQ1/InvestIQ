@@ -1,6 +1,6 @@
 .header {
   font-family: "Roboto";
-  background: #fff;
+  background: var(--background);
   height: 56px;
   display: flex;
   justify-content: space-between;
@@ -15,7 +15,7 @@
   &__profile-picture {
     width: 32px;
     height: 32px;
-    background-color: #F5F6FA;
+    background-color: var(--background);
     border-radius: 50%;
   }
   &__profile-name {
@@ -38,11 +38,18 @@
       align-items: center;
       justify-content: center;
       padding-right: 20px;
+      margin-left: 20px;
     }
+
+    &__user-inetrface {
+      display: flex;
+      align-items: center;
+    }
+
 
   @media screen and (min-width: 768px) {
     &__user-inetrface {
-      width: 212px;
+      width: 222px;
       height: 36px;
       display: flex;
       align-items: center;
@@ -52,6 +59,7 @@
     &__profile-part {
         gap: 10px;
       border-right: 2px solid #e0e5eb;
+      margin-left: 20px;
     }
 
     &__profile-name {
@@ -59,7 +67,7 @@
       font-size: 12px;
       letter-spacing: 0.04em;
       text-align: right;
-      color: #52555f;
+      color: var(--text);
       display: block;
       visibility: visible;
     }
@@ -70,7 +78,7 @@
       letter-spacing: 0.04em;
       text-decoration: underline;
       text-decoration-skip-ink: none;
-      color: #52555f;
+      color: var(--text);
       margin-left: 20px;
       display: block;
       visibility: visible;
@@ -83,3 +91,4 @@
     }
   }
 }
+

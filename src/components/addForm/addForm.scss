@@ -1,24 +1,26 @@
 .addForm,
 .addForm__background {
   box-sizing: border-box;
+  border-top-right-radius: 30px;
 }
 
 .arrorIcon {
-  color: #ff751d;
+  color: var(--button-background);
   width: 24px;
   height: 24px;
 }
 .calendIcon,
 .calculateIcon {
-  color: #52555f;
+  color: var(--text);
   width: 20px;
   height: 20px;
 }
 
 .addForm {
+
   width: 100%;
   // padding: 15px 19px 43px;
-  background-color: #fff;
+  background-color: var(--background);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,38 +29,38 @@
   // }
   &__inputs {
     stroke-width: 2px;
-    stroke: #fff;
+    stroke: var(--background);
     margin-top: 15px;
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
   }
   &__descr {
-    background-color: #f5f6fb;
+    background-color: var(--background2);
     padding: 17px 0 17px 19px;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 12px;
     letter-spacing: 0.02em;
-    border: 2px #fff solid;
-    color: #c7ccdc;
+    border: 2px var(--background) solid;
+    color: var(--descr-color);
     border-top-right-radius: 10px;
     border-top-left-radius: 20px;
     outline: none;
     &::placeholder {
-      color: #c7ccdc;
+      color: var(--descr-color);
     }
   }
   &__selectGoods {
-    background-color: #f5f6fb;
+    background-color: var(--background2);
     padding: 17px 0 17px 19px;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 12px;
-    border: 2px #fff solid;
+    border: 2px var(--background) solid;
     border-bottom-right-radius: 20px;
     letter-spacing: 0.02em;
-    color: #c7ccdc;
+    color: var(--descr-color);
     min-width: 282px;
     outline: none;
   }
@@ -66,7 +68,7 @@
     border-radius: 16px;
     width: 125px;
     height: 44px;
-    background: #ff751d;
+    background: var(--button-background);
     padding: 12px 24px;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
@@ -74,7 +76,7 @@
     letter-spacing: 0.02em;
     text-transform: uppercase;
     text-align: center;
-    color: #fff;
+    color: var(--background);
     border: none;
   }
   &__btn2 {
@@ -87,9 +89,9 @@
     letter-spacing: 0.02em;
     text-transform: uppercase;
     text-align: center;
-    color: #52555f;
-    box-shadow: 1px 2px 5px 0 rgba(170, 178, 197, 0.4);
-    background: #f5f6fb;
+    color: var(--text);
+    box-shadow: 1px 2px 5px 0 var(--box-shadow);
+    background: var(--background2);
     border-radius: 16px;
     border: none;
   }
@@ -101,8 +103,8 @@
   &__prize {
     width: 183px;
     height: 44px;
-    border: 2px #fff solid;
-    background-color: #f5f6fb;
+    border: 2px var(--background) solid;
+    background-color: var(--background2);
     border-radius: 50px;
     display: flex;
     justify-content: center;
@@ -114,18 +116,18 @@
     height: 30px;
     border: none;
     outline: none;
-    background-color: #f5f6fb;
+    background-color: var(--background2);
     font-weight: 700;
     font-size: 12px;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     text-align: right;
-    color: #52555f;
+    color: var(--text);
     padding-right: 30px;
   }
   &__background {
     width: 100%;
-    background: #f5f6fb;
+    background: var(--background2);
     border-bottom-left-radius: 100px;
     padding: 15px 19px 43px;
     display: flex;
@@ -140,7 +142,7 @@
   &__separate {
     width: 2px;
     height: 40px;
-    background: #fff;
+    background: var(--background);
     margin-right: 20px;
   }
 }
@@ -159,7 +161,7 @@
       padding: 0;
       width: 60px;
       text-align: center;
-      background-color: #fff;
+      background-color: var(--background);
     }
     &__top {
       display: flex;
@@ -170,8 +172,8 @@
     }
     &__prize {
       padding: 12px 20px 12px 0;
-      background-color: #fff;
-      border: 2px #f5f6fb solid;
+      background-color: var(--background);
+      border: 2px var(--background2) solid;
       width: 104px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
@@ -191,21 +193,21 @@
       box-sizing: border-box;
       min-width: 0;
       width: 170px;
-      background-color: #fff;
-      border: 2px #f5f6fb solid;
+      background-color: var(--background);
+      border: 2px var(--background2) solid;
       border-radius: 0;
       border-left: none;
     }
     &__descr {
       box-sizing: border-box;
       width: 192px;
-      background-color: #fff;
-      border: 2px #f5f6fb solid;
+      background-color: var(--background);
+      border: 2px var(--background2) solid;
       border-top-right-radius: 0;
     }
     &__background {
       flex-direction: row;
-      background-color: #fff;
+      background-color: var(--background);
       padding: 28px 30px 30px 31px;
     }
     &__data {
@@ -223,7 +225,7 @@
       font-size: 12px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: #52555f;
+      color: var(--text);
     }
   }
 

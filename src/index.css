@@ -1,3 +1,89 @@
 body {
     margin: 0;
+    background-color: var(--background2);
+}
+
+
+:root[data-theme="light"] {
+  --background: rgba(255, 255, 255, 1);
+  --background2: rgba(242, 245, 252, 1);
+  --text: rgba(82, 85, 95, 1);
+  --title-text: rgba(0, 0, 0, 1);
+  --button-background: rgba(255, 117, 29, 1);
+  --box: rgba(245, 246, 251, 1);
+  --spendings-text: rgba(231, 25, 46, 1);
+  --earnings-text: rgba(64, 121, 70, 1);
+  --bar-color: rgba(255, 218, 192, 1);
+  --box-shadow: rgba(170, 178, 197, 0.2);
+  --button-hover: #eceef5;
+  --descr-color: #c7ccdc;
+  
+
+
+  /* Auth Page */
+
+  --primary-color:#ff751d;
+    --primary-hover:#e56716;
+    --secondary-color:#757575;
+    --text-color:#222222;
+    --border-color:#dedede;
+    --background-color:#f8f9fb;
+    --input-background:#f6f7fb;
+    --white:#ffffff;
+    --auth-form-label: #3f3f3f;
+    --box-shadow-auth: rgba(255,117,29,0.12);
+
+
+
+    /*  Graph  */
+
+    --graph-text: #52555f;
+    --graph-grid: #f5f6fb;
+    --graph-primary: #ff751d;
+    --graph-secondary: #ffdac0;
+
+}
+
+:root[data-theme="dark"] {
+  --background: rgb(18, 18, 20);
+  --background2: rgb(28, 30, 35);
+  --text: rgb(180, 186, 198);
+  --title-text: rgb(245, 247, 250);
+  --button-background: rgb(255, 117, 29);
+  --box: rgb(36, 39, 46);
+  --spendings-text: rgb(255, 107, 107);
+  --earnings-text: rgb(107, 203, 119);
+  --bar-color: rgb(160, 98, 58);
+  --border-color: rgb(58, 62, 72);
+  --box-shadow: rgba(0, 0, 0, 0.35);
+  --button-hover: rgb(48, 52, 60);
+--descr-color: #b8bfcc;
+
+  /* Auth Page */
+
+--primary-color: #ff751d;
+  --primary-hover: #ff8b42;
+
+  --secondary-color: #a0a6b1;
+
+  --text-color: #f3f4f6;
+
+  --border-color: #3a3f48;
+
+  --background-color: #121214;
+
+  --input-background: #23262d;
+
+  --white: #2b2f36;
+  --auth-form-label: #d1d5db;
+  --box-shadow-auth: rgba(255, 117, 29, 0.2);
+
+
+
+  /*  Graph  */
+
+    --graph-text: #afb3bb;
+  --graph-grid: #3a3f48;
+  --graph-primary: #ff751d;
+  --graph-secondary: #8b5a36;
 }

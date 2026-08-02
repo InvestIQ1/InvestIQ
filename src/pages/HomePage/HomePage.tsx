@@ -1,7 +1,7 @@
 
-import { WrapperPage } from "../../components/wrapperPage/wrapperPage";
+import { WrapperPage } from "../../components/wrapperPage/WrapperPage";
 import { Header } from "../../components/header/Header";
-import {PeriodDate} from "../../components/periodDate/PeriodDate";
+import { PeriodDate } from "../../components/periodDate/PeriodDate";
 
 
 export default function HomePage(){
