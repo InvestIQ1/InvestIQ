@@ -5,13 +5,55 @@
   height: auto;
   box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
   background: var(--background);
+
+  background: #fff;
+
   display: flex;
   flex-direction: column;
-  justify-self: center;
   align-items: center;
+
   padding-top: 20px;
   padding-bottom: 30px;
 
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+
+
+  &.left {
+    animation-name: slideLeft;
+  }
+
+
+  &.right {
+    animation-name: slideRight;
+  }
+
+
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
   &__choser {
     display: flex;
     gap: 10px;
@@ -44,17 +86,7 @@
     }
   }
 
-  &__item {
-    width: 84px;
-    height: 106px;
-    display: flex;
-    gap: 5px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__money {
+    &__money {
     font-weight: 400;
     font-size: 12px;
     letter-spacing: 0.04em;
@@ -63,11 +95,22 @@
     color: var(--text);
   }
 
-  &__photo {
-    height: 56px;
-    width: 56px;
-    border: aquamarine;
+  
+&__item {
+  width: 84px;
+  height: 106px;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .25s ease;
+
+  &:hover {
+    transform: scale(1.05);
   }
+
 
   &__name {
     font-weight: 400;
@@ -76,7 +119,36 @@
     text-transform: uppercase;
     text-align: center;
     color: var(--text);
+
+  &.active {
+    .Category__photo {
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 8px rgba(255, 117, 29, 0.5));
+    }
+
+    .Category__name {
+      color: #FF751D;
+      font-weight: 700;
+    }
+
   }
+}
+
+&__photo {
+  height: 56px;
+  width: 56px;
+  transition: transform .25s ease, filter .25s ease;
+}
+
+&__name {
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #52555f;
+  transition: color .25s ease;
+}
 }
 
 ul {
