@@ -1,0 +1,22 @@
+import { Navigate } from "react-router-dom";
+import { useAppSelector } from "./redux/dispatchHook";
+
+type Props = {
+  children: React.ReactNode;
+};
+
+
+export default function PrivateRoute({children}:Props){
+
+  const user = useAppSelector(
+    (state)=>state.auth.user
+  );
+
+
+  if(!user){
+    return <Navigate to="/" replace />;
+  }
+
+
+  return children;
+}
