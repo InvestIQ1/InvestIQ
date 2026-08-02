@@ -1,27 +1,61 @@
 // import { log } from 'firebase/firestore/pipelines';
-// import { dataBaseDB } from '../../firebase/firebase.ts'
+import { dataBaseDB } from "../../firebase/firebase.ts";
 // import { authFireBase } from '../../firebase/firebase.ts'
 import { createAsyncThunk } from "@reduxjs/toolkit";
-// import { collection, addDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import axios from "axios";
+import type { RootState } from "../store.ts";
+import { nanoid } from "nanoid";
 
 interface Transaction {
+  id: string;
   category: string;
   descr: string;
   sum: number;
 }
-
-const baseUrl = "https://6a3ab4a0917c7b14c74dfcfa.mockapi.io/te";
+type NewTransaction = Omit<Transaction, "id">;
 
 export const addTransaction = createAsyncThunk(
   "transaction/addTransaction",
-  async (transData: Transaction, thunkAPI) => {
+  async (transData: NewTransaction, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    if (state.auth.user === null) {
+      throw new Error("Користувач не знайден");
+    }
     try {
-      // const fetchData = collection(dataBaseDB,"transaction", "1")
-      const fetchData = await axios.post(`${baseUrl}/transactions`, transData);
-      const data = fetchData.data;
-      console.log(fetchData);
-      return data;
+      const userDocRef = doc(dataBaseDB, "transaction", state.auth.user.uid);
+      const newTransaction: Transaction = { ...transData, id: nanoid() };
+      await updateDoc(userDocRef, { transaction: arrayUnion(newTransaction) });
+      return newTransaction;
+    } catch (err: unknown) {
+      console.log(err);
+
+      if (axios.isAxiosError(err)) {
+        return thunkAPI.rejectWithValue(err.message);
+      }
+
+      return thunkAPI.rejectWithValue("Unknown error");
+    }
+  },
+);
+
+export const removeTransaction = createAsyncThunk(
+  "transaction/removeTransaction",
+  async (id: string, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    if (state.auth.user === null) {
+      throw new Error("Користувач не знайден");
+    }
+    try {
+      const userDocRef = doc(dataBaseDB, "transaction", state.auth.user.uid);
+      const collection = await getDoc(userDocRef);
+      if (collection.exists()) {
+        const collData: Transaction[] = collection.data().transaction;
+        const filteredCollection = collData.filter((trans) => trans.id !== id);
+        await updateDoc(userDocRef, { transaction: filteredCollection });
+      }
+
+      return id;
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         return thunkAPI.rejectWithValue(err.message);
@@ -31,3 +65,33 @@ export const addTransaction = createAsyncThunk(
     }
   },
 );
+
+export const getTransactions = createAsyncThunk<
+  Transaction[],
+  void,
+  { rejectWithValue: string; state: RootState }
+>("transactions/getTransactions", async (_, { rejectWithValue, getState }) => {
+  const state = getState();
+  console.log("state", state);
+
+  try {
+    if (state.auth.user === null) {
+      throw new Error("Користувач не знайден");
+    }
+
+    const userDocRef = doc(dataBaseDB, "transaction", state.auth.user.uid);
+    const docSnap = await getDoc(userDocRef);
+    console.log(userDocRef, docSnap);
+
+    if (docSnap.exists()) {
+      return docSnap.data().transaction || [];
+    } else {
+      await setDoc(userDocRef, { transaction: [] });
+      return [];
+    }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
+    }
+  }
+});

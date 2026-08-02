@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTransaction } from "./transactionOparation.ts";
+import { addTransaction, getTransactions } from "./transactionOparation.ts";
 
 interface Transaction {
   id: string;
@@ -34,6 +34,18 @@ const transactionSlice = createSlice({
       state.transactions.push(action.payload);
     });
     builder.addCase(addTransaction.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload as string;
+    });
+
+     builder.addCase(getTransactions.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getTransactions.fulfilled, (state, action) => {
+      state.loading = false;
+      state.transactions = action.payload
+    });
+    builder.addCase(getTransactions.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload as string;
     });
