@@ -58,7 +58,6 @@ const authSlice = createSlice({
             })
             .addCase(checkAuth.fulfilled,(state,action)=>{
     state.user = action.payload;
-    console.log(state.user)
   })
   .addCase(logoutUser.fulfilled, (state) => {
     state.user = null;
