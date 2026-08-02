@@ -1,0 +1,52 @@
+.month-statistic {
+  width: 213px;
+  background-color: #f5f6fb;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+
+  &__title {
+    padding: 12px 0;
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.17;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #000000;
+    border-bottom: 2px solid #ffffff;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.04em;
+    color: #52555f;
+    border-bottom: 2px solid #ffffff;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__month {
+    text-transform: uppercase;
+  }
+
+  &__total {
+    font-weight: 400;
+  }
+}

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { checkAuth, createUser, loginWithGitHub, loginWithGoogle, type AuthUser } from "./authOperation";
+import { checkAuth, createUser, loginWithGitHub, loginWithGoogle, logoutUser, type AuthUser } from "./authOperation";
 
 const initialState: AuthState = {
     user: null,
@@ -59,6 +59,9 @@ const authSlice = createSlice({
             .addCase(checkAuth.fulfilled,(state,action)=>{
     state.user = action.payload;
     console.log(state.user)
+  })
+  .addCase(logoutUser.fulfilled, (state) => {
+    state.user = null;
   });
     },
 });

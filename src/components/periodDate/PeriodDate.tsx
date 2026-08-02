@@ -5,9 +5,22 @@ import "./periodDate.scss"
 export const PeriodDate : React.FC = () => {
         const date : Date = new Date()
     const [monthNumber, setMonthNumber] = useState(date.getMonth())
+    const [yearNumber, setYearNumber] = useState(date.getFullYear())
 
 
     const monthNames : string[] = ["січень", "лютий", "березень", "квітень", "травень", "червень", "липень", "серпень", "вересень", "жовтень", "листопад", "грудень"];
+
+    const showingDate = () => {
+        if (monthNumber >= 12) {
+            setMonthNumber(0)
+            setYearNumber(yearNumber + 1)
+        } else if (monthNumber < 0) {
+            setMonthNumber(11)
+            setYearNumber(yearNumber - 1)
+        }
+        return `${monthNames[monthNumber]} ${yearNumber}`;
+    };
+
     return(
         <>
         {/* <Container> */}
@@ -17,7 +30,7 @@ export const PeriodDate : React.FC = () => {
                     <button type="button" className="Period__button" onClick={() => {setMonthNumber(monthNumber - 1)}}> <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M5.28064 0.624512L1.28064 5.62451L5.28064 10.6245" stroke="#FF751D" strokeWidth="2" />
 </svg> </button>
-                    <h2 className="Period__date">{monthNames[monthNumber]} <br/> {date.getFullYear()}</h2>
+                    <h2 className="Period__date">{showingDate()}</h2>
                     <button type="button" className="Period__button" onClick={() => {setMonthNumber(monthNumber + 1)}}><svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M0.780884 0.624512L4.78088 5.62451L0.780884 10.6245" stroke="#FF751D" strokeWidth="2" />
 </svg></button>
