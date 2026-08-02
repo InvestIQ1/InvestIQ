@@ -1,6 +1,5 @@
 import "./chooseCategory.scss";
-import { useState, type SyntheticEvent } from "react";
-// import { useMemo, memo } from "react";
+import { useState } from "react";
 // import { Container } from "../container/Container"
 import Products from "../../assets/Products.svg";
 import Alcohol from "../../assets/Alcohol.svg";
@@ -15,56 +14,251 @@ import Ufo from "../../assets/Ufo.svg";
 import House from "../../assets/House.svg";
 import Salary from "../../assets/Salary.svg";
 import Income from "../../assets/Income.svg";
+import { motion } from "motion/react";
 
 export const ChooseCategory: React.FC = () => {
   const [isSpends, setIsSpends] = useState(true);
-  const [currentActive, setCurrentActive] = useState<string>();
-  const allItems = document.querySelectorAll(".Category__item");
-  //   console.log(allItems)
+  const [currentActive, setCurrentActive] = useState<string | null>(null);
+const [slideDirection, setSlideDirection] = useState<"left" | "right">("right");
 
-  const handleClick = (e: SyntheticEvent<HTMLLIElement>) => {
-    const item = e.currentTarget as HTMLLIElement;
-    //   if(item === currentActive || currentActive === undefined) {
-    //   setCurrentActive(item)
-    //   console.log(currentActive)
-    //   item.children[2].style.color = "orange"
-    //   } else {
-    //     console.log(currentActive)
-    //     const previusActive : HTMLLIElement = memo(currentActive)
-    //     console.log(previusActive)
-    //     // previusActive.children[2].style.color = "orange"
-    //       previusActive.type.children[2].style.color = "black"
-    //   }
-    if (currentActive === undefined) {
-      setCurrentActive(item.id);
-      //   console.log(currentActive)
-      item.children[2].style.color = "orange";
-    } else if (item.id === currentActive) {
-        setCurrentActive(undefined)
-      item.children[2].style.color = "black";
-    } else {
-      item.children[2].style.color = "orange";
-      const previousItem = allItems[+currentActive - 1];
-      previousItem.children[2].style.color = "black";
-      setCurrentActive(item.id);
-    }
+  const allExpensesArray = [
+    {
+      id: "1",
+      money: 200.0,
+      photo: Products,
+      name: "Продукти",
+    },
+    {
+      id: "2",
+      money: 200.0,
+      photo: Alcohol,
+      name: "Алкоголь",
+    },
+    {
+      id: "3",
+      money: 200.0,
+      photo: Health,
+      name: "Здоров’я",
+    },
+    {
+      id: "4",
+      money: 200.0,
+      photo: Fun,
+      name: "Розваги",
+    },
+    {
+      id: "5",
+      money: 200.0,
+      photo: Transport,
+      name: "Транспорт",
+    },
+    {
+      id: "6",
+      money: 200.0,
+      photo: House,
+      name: "Все для дому",
+    },
+    {
+      id: "7",
+      money: 200.0,
+      photo: Machinery,
+      name: "Техніка",
+    },
+    {
+      id: "8",
+      money: 200.0,
+      photo: Bills,
+      name: "Комуналка, зв’язок",
+    },
+    {
+      id: "9",
+      money: 200.0,
+      photo: Hobby,
+      name: "Спорт, хобі",
+    },
+    {
+      id: "10",
+      money: 200.0,
+      photo: Learning,
+      name: "Навчання",
+    },
+    {
+      id: "11",
+      money: 200.0,
+      photo: Ufo,
+      name: "Інше",
+    },
+  ];
+
+  const allIncomesArray = [
+    {
+      id: "12",
+      money: 200.0,
+      photo: Salary,
+      name: "ЗП",
+    },
+    {
+      id: "13",
+      money: 200.0,
+      photo: Income,
+      name: "ДОД. ДОХІД",
+    },
+  ];
+
+  const handleClick = (id: string) => {
+    setCurrentActive((prev) => (prev === id ? null : id));
   };
 
-  const handleChange = () => {  
-    setCurrentActive(undefined)
-setIsSpends(!isSpends);
-console.log(currentActive)
-  }
+const handleChange = () => {
+  setCurrentActive(null);
+  setSlideDirection(isSpends ? "left" : "right");
+  setIsSpends((prev) => !prev);
+};
 
-  const spends = (
-    <div className="Category">
+  const data = isSpends ? allExpensesArray : allIncomesArray;
+  const title = isSpends ? "витрати" : "доходи";
+
+  // const spends = (
+  //   <div className="Category">
+  //     <div className="Category__choser">
+  //       <button
+  //         type="button"
+  //         className="Category__button"
+  //         onClick={handleChange}
+  //       >
+  //         {" "}
+  //         <svg
+  //           width="7"
+  //           height="12"
+  //           viewBox="0 0 7 12"
+  //           fill="none"
+  //           xmlns="http://www.w3.org/2000/svg"
+  //         >
+  //           <path
+  //             d="M5.28064 0.624512L1.28064 5.62451L5.28064 10.6245"
+  //             stroke="#FF751D"
+  //             strokeWidth="2"
+  //           />
+  //         </svg>
+  //       </button>
+  //       <h2 className="Category__text">витрати</h2>
+  //       <button
+  //         type="button"
+  //         className="Category__button"
+  //         onClick={handleChange}
+  //       >
+  //         <svg
+  //           width="7"
+  //           height="12"
+  //           viewBox="0 0 7 12"
+  //           fill="none"
+  //           xmlns="http://www.w3.org/2000/svg"
+  //         >
+  //           <path
+  //             d="M0.780884 0.624512L4.78088 5.62451L0.780884 10.6245"
+  //             stroke="#FF751D"
+  //             strokeWidth="2"
+  //           />
+  //         </svg>
+  //       </button>
+  //     </div>
+
+  //     <ul className="Category__list">
+  //       {allExpensesArray.map((item) => (
+  //         <li
+  //           className="Category__item"
+  //           onClick={() => handleClick(item.id)}
+  //           id={item.id}
+  //           key={item.id}
+  //         >
+  //           <p className="Category__money">{item.money}</p>
+  //           <img src={item.photo} alt="" className="Category__photo" />
+  //           <p className="Category__name">{item.name}</p>
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   </div>
+  // );
+
+  // const income = (
+  //   <div className="Category">
+  //     <div className="Category__choser">
+  //       <button
+  //         type="button"
+  //         className="Category__button"
+  //         onClick={() => {
+  //           setIsSpends(!isSpends);
+  //         }}
+  //       >
+  //         {" "}
+  //         <svg
+  //           width="7"
+  //           height="12"
+  //           viewBox="0 0 7 12"
+  //           fill="none"
+  //           xmlns="http://www.w3.org/2000/svg"
+  //         >
+  //           <path
+  //             d="M5.28064 0.624512L1.28064 5.62451L5.28064 10.6245"
+  //             stroke="#FF751D"
+  //             strokeWidth="2"
+  //           />
+  //         </svg>{" "}
+  //       </button>
+  //       <h2 className="Category__text">доходи</h2>
+  //       <button
+  //         type="button"
+  //         className="Category__button"
+  //         onClick={() => {
+  //           setIsSpends(!isSpends);
+  //         }}
+  //       >
+  //         <svg
+  //           width="7"
+  //           height="12"
+  //           viewBox="0 0 7 12"
+  //           fill="none"
+  //           xmlns="http://www.w3.org/2000/svg"
+  //         >
+  //           <path
+  //             d="M0.780884 0.624512L4.78088 5.62451L0.780884 10.6245"
+  //             stroke="#FF751D"
+  //             strokeWidth="2"
+  //           />
+  //         </svg>
+  //       </button>
+  //     </div>
+  //     <ul className="Category__list">
+  //       {allIncomesArray.map((item) => (
+  //         <li
+  //           className="Category__item"
+  //           onClick={() => handleClick(item.id)}
+  //           id={item.id}
+  //           key={item.id}
+  //         >
+  //           <p className="Category__money">{item.money}</p>
+  //           <img src={item.photo} alt="" className="Category__photo" />
+  //           <p className="Category__name">{item.name}</p>
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   </div>
+  // );
+
+return (
+  <motion.div
+    key={isSpends ? "expenses" : "income"}
+    className={`Category ${slideDirection}`}
+    initial={{ opacity: 0, x: slideDirection === "right" ? 60 : -60 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: slideDirection === "right" ? 60 : -60 }}
+  >
       <div className="Category__choser">
         <button
           type="button"
           className="Category__button"
           onClick={handleChange}
         >
-          {" "}
           <svg
             width="7"
             height="12"
@@ -72,126 +266,21 @@ console.log(currentActive)
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
+            {" "}
             <path
               d="M5.28064 0.624512L1.28064 5.62451L5.28064 10.6245"
               stroke="#FF751D"
               strokeWidth="2"
-            />
-          </svg>
-        </button>
-        <h2 className="Category__text">витрати</h2>
-        <button
-          type="button"
-          className="Category__button"
-          onClick={handleChange}
-        >
-          <svg
-            width="7"
-            height="12"
-            viewBox="0 0 7 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0.780884 0.624512L4.78088 5.62451L0.780884 10.6245"
-              stroke="#FF751D"
-              strokeWidth="2"
-            />
-          </svg>
-        </button>
-      </div>
-      <ul className="Category__list">
-        <li className="Category__item" onClick={handleClick} id="1">
-          <p className="Category__money">200.00</p>
-          <img src={Products} alt="" className="Category__photo" />
-          <p className="Category__name">Продукти</p>
-        </li>
-        <li className="Category__item" onClick={handleClick} id="2">
-          <p className="Category__money">200.00</p>
-          <img src={Alcohol} alt="" className="Category__photo" />
-          <p className="Category__name">Алкоголь</p>
-        </li>
-        <li className="Category__item" onClick={handleClick} id="3">
-          <p className="Category__money">200.00</p>
-          <img src={Fun} alt="" className="Category__photo" />
-          <p className="Category__name">розваги</p>
-        </li>
-        <li className="Category__item" onClick={handleClick} id="4">
-          <p className="Category__money">200.00</p>
-          <img src={Health} alt="" className="Category__photo" />
-          <p className="Category__name">здоров’я</p>
-        </li>
-        <li className="Category__item" onClick={handleClick} id="5">
-          <p className="Category__money">200.00</p>
-          <img src={Transport} alt="" className="Category__photo" />
-          <p className="Category__name">Транспорт</p>
-        </li>
-        <li className="Category__item" onClick={handleClick} id="6">
-          <p className="Category__money">200.00</p>
-          <img src={House} alt="" className="Category__photo" />
-          <p className="Category__name">все для дому</p>
-        </li>
-        <li className="Category__item" onClick={handleClick} id="7">
-          <p className="Category__money">200.00</p>
-          <img src={Machinery} alt="" className="Category__photo" />
-          <p className="Category__name">Техніка</p>
-        </li>
-        <li className="Category__item" onClick={handleClick} id="8">
-          <p className="Category__money">200.00</p>
-          <img src={Bills} alt="" className="Category__photo" />
-          <p className="Category__name">комуналка, зв’язок</p>
-        </li>
-        <li className="Category__item" onClick={handleClick} id="9">
-          <p className="Category__money">200.00</p>
-          <img src={Hobby} alt="" className="Category__photo" />
-          <p className="Category__name">Спорт, хобі</p>
-        </li>
-        <li className="Category__item" onClick={handleClick} id="10">
-          <p className="Category__money">200.00</p>
-          <img src={Learning} alt="" className="Category__photo" />
-          <p className="Category__name">навчання</p>
-        </li>
-        <li className="Category__item" onClick={handleClick} id="11">
-          <p className="Category__money">200.00</p>
-          <img src={Ufo} alt="" className="Category__photo" />
-          <p className="Category__name">Інше</p>
-        </li>
-      </ul>
-    </div>
-  );
-
-  const income = (
-    <div className="Category">
-      <div className="Category__choser">
-        <button
-          type="button"
-          className="Category__button"
-          onClick={() => {
-            setIsSpends(!isSpends);
-          }}
-        >
-          {" "}
-          <svg
-            width="7"
-            height="12"
-            viewBox="0 0 7 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5.28064 0.624512L1.28064 5.62451L5.28064 10.6245"
-              stroke="#FF751D"
-              strokeWidth="2"
-            />
+            />{" "}
           </svg>{" "}
         </button>
-        <h2 className="Category__text">доходи</h2>
+
+        <h2 className="Category__text">{title}</h2>
+
         <button
           type="button"
           className="Category__button"
-          onClick={() => {
-            setIsSpends(!isSpends);
-          }}
+          onClick={handleChange}
         >
           <svg
             width="7"
@@ -200,34 +289,29 @@ console.log(currentActive)
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
+            {" "}
             <path
               d="M0.780884 0.624512L4.78088 5.62451L0.780884 10.6245"
               stroke="#FF751D"
               strokeWidth="2"
-            />
+            />{" "}
           </svg>
         </button>
       </div>
-      <ul className="Category__list">
-        <li className="Category__item" onClick={handleClick} id="12">
-          <p className="Category__money">200.00</p>
-          <img src={Salary} alt="" className="Category__photo" />
-          <p className="Category__name">ЗП</p>
-        </li>
-        <li className="Category__item" onClick={handleClick} id="13">
-          <p className="Category__money">200.00</p>
-          <img src={Income} alt="" className="Category__photo" />
-          <p className="Category__name">ДОД. ДОХІД</p>
-        </li>
-      </ul>
-    </div>
-  );
 
-  return (
-    <>
-      {/* <Container> */}
-      {isSpends ? spends : income}
-      {/* </Container> */}
-    </>
+      <ul className="Category__list">
+        {data.map((item) => (
+          <li
+            key={item.id}
+            className={`Category__item ${currentActive === item.id ? "active" : ""}`}
+            onClick={() => handleClick(item.id)}
+          >
+            <p className="Category__money">{item.money}</p>
+            <img src={item.photo} alt="" className="Category__photo" />
+            <p className="Category__name">{item.name}</p>
+          </li>
+        ))}
+      </ul>
+    </motion.div>
   );
 };
