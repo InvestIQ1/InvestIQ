@@ -4,6 +4,8 @@
   width: 100%;
   height: auto;
   box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
+  background: var(--background);
+
   background: #fff;
 
   display: flex;
@@ -68,7 +70,7 @@
     letter-spacing: 0.02em;
     text-transform: uppercase;
     text-align: center;
-    color: #000;
+    color: var(--title-text);
   }
 
   &__list {
@@ -90,7 +92,7 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     text-align: center;
-    color: #52555f;
+    color: var(--text);
   }
 
   
@@ -109,6 +111,15 @@
     transform: scale(1.05);
   }
 
+
+  &__name {
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--text);
+
   &.active {
     .Category__photo {
       transform: scale(1.15);
@@ -119,6 +130,7 @@
       color: #FF751D;
       font-weight: 700;
     }
+
   }
 }
 

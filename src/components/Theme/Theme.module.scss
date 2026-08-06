@@ -1,0 +1,62 @@
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
+  border: 1px solid;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+
+      width: 30px;
+      height: 30px;
+
+    @media screen and (min-width: 1200px) {
+        width: 35px;
+        height: 35px;
+  }
+}
+
+.toggleBtn:hover {
+  transform: scale(1.05);
+}
+
+.toggleBtn:active {
+  transform: scale(0.95);
+}
+
+.icon {
+    height: 16px;
+    width: 26px;
+
+
+    @media screen and (min-width: 1200px) {
+        height: 20px;
+        width: 40px;
+  }
+}
+
+.activeDark {
+  background: rgb(18, 18, 20);
+  border-color: #374151;
+  color: #f9fafb;
+}
+
+.activeDark:hover {
+  background: rgb(31, 31, 38);
+}
+
+.activeLight {
+  background: #ffffff;
+  border-color: #d1d5db;
+  color: #1f2937;
+}
+
+.activeLight:hover {
+  background: #f3f4f6;
+}

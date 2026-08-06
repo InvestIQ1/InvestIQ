@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-
 import { lazy, Suspense } from "react";
 import { useAppSelector } from "./redux/dispatchHook";
 import { useEffect } from "react";
@@ -7,6 +6,9 @@ import { useEffect } from "react";
 // import { authFireBase } from "./firebase/firebase";
 import { useAppDispatch } from "./redux/dispatchHook";
 import { checkAuth } from "./redux/Auth/authOperation";
+import { useState } from "react";
+import { ThemeContext } from "./context/ThemeContext";
+import type { Theme } from "./context/ThemeContext";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 
@@ -29,11 +31,29 @@ function AuthRedirect() {
 }
 
 function App() {
+const [theme, setTheme] = useState<Theme>(() => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+});
+
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(checkAuth());
   }, []);
+
+
+  const toggleTheme = () => {
+    setTheme((current:string) => (current === "light" ? "dark" : "light"))
+  }
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
   return (
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
     <Suspense fallback={<div>Завантаження</div>}>
       <Routes>
         <Route path="/" element={<AuthRedirect />} />
@@ -56,6 +76,7 @@ function App() {
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Suspense>
+    </ThemeContext.Provider>
   );
 }
 

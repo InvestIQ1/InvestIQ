@@ -3,14 +3,49 @@ import Plotly from 'plotly.js-dist-min';
 import type { Data, Layout } from 'plotly.js';
 import '../container/container.scss'
 import { useState } from 'react';
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
+import { Container } from '../container/Container';
 
 // import { Container } from "../container/Container";
 import './_graph.scss';
 
 export const Graph = () => {
-  const [windowWidth, setWindowWidth] = useState<number>(
-    typeof window !== 'undefined' ? window.innerWidth : 1024
-  );
+const { theme } = useContext(ThemeContext)!;
+    const [windowWidth, setWindowWidth] = useState<number>(
+      typeof window !== 'undefined' ? window.innerWidth : 1024
+    );
+
+const getGraphColor = (name: string) =>
+      getComputedStyle(document.documentElement)
+        .getPropertyValue(name)
+        .trim();
+
+
+const graphText = getGraphColor("--graph-text");
+    const graphGrid = getGraphColor("--graph-grid");
+    const graphPrimary = getGraphColor("--graph-primary");
+    const graphSecondary = getGraphColor("--graph-secondary");
+
+  useEffect(() => {
+    const getGraphColor = (name: string) =>
+      getComputedStyle(document.documentElement)
+        .getPropertyValue(name)
+        .trim();
+
+    const graphText = getGraphColor("--graph-text");
+    const graphGrid = getGraphColor("--graph-grid");
+    const graphPrimary = getGraphColor("--graph-primary");
+    const graphSecondary = getGraphColor("--graph-secondary");
+
+    // create data and layout here using those values
+
+    Plotly.react("myPlot", data, layout);
+
+  return () => Plotly.purge("myPlot");
+}, [windowWidth, theme]);
+
+
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -28,11 +63,12 @@ export const Graph = () => {
   const orientationOf = isMobile ? "h" : "v"
   const xArray: string[] = ["Свинина", "Гов’ядина", "Курятина", "Риба", "Паніні", "Кава", "Спагетті", "Шоколад", "Маслини", "Зелень"];
   const yArray: number[] = [5000, 4500, 3200, 2100, 1800, 1700, 1500, 800, 500, 300];
-  const colorOne: string = "#FF751D"; 
-  const colorTwo: string = "#FFDAC0"; 
+  const colorOne = graphPrimary;
+  const colorTwo = graphSecondary;
   const alternatingColors = xArray.map((_, index) => 
     index % 2 === 0 ? colorOne : colorTwo
   );
+
 
   const count = xArray.length;
   const center = (count - 1) / 2; 
@@ -55,7 +91,7 @@ export const Graph = () => {
     textposition: "outside",
     textfont: {
         size: fontSize,  
-        color: isMobile ? "transparent" : "#52555F",
+        color: isMobile ? "transparent" : graphText,
         },
         
         marker: {
@@ -75,12 +111,15 @@ export const Graph = () => {
     dragmode: false,
     autosize: true, 
 
+      paper_bgcolor: "transparent",
+  plot_bgcolor: "transparent",
+
   xaxis: isMobile ? {
       showticklabels: false,
       showgrid: false,  
-      gridcolor: "#F5F6FB", 
+      gridcolor: graphGrid, 
       zeroline: false,
-      zerolinecolor: "#F5F6FB",
+      zerolinecolor: graphGrid,
       fixedrange: true,
       range: [0, Math.max(...yArray) * 1.05],
     } : {
@@ -90,7 +129,7 @@ export const Graph = () => {
       fixedrange: true,
       tickfont: {
         size: fontSize, 
-        color: "#52555F",
+        color: graphText,
       },
       ticklen: tickLen,              
       tickcolor: "transparent",
@@ -103,10 +142,10 @@ export const Graph = () => {
     } : {
       showticklabels: false, 
       zeroline: true,
-      zerolinecolor: "#F5F6FB",
+      zerolinecolor: graphGrid,
       zerolinewidth: 2,
       showgrid: true,  
-      gridcolor: "#F5F6FB", 
+      gridcolor: graphGrid, 
       gridwidth: 2,
       fixedrange: true,
     },
@@ -128,7 +167,7 @@ export const Graph = () => {
       yshift: 20,
       font: {
         size: 10,
-        color: "#52555F",
+        color: graphText,
       },
     },
     {
@@ -142,7 +181,7 @@ export const Graph = () => {
       yshift: 18,
       font: {
         size: 10,
-        color: "#52555F",
+        color: graphText,
       },
     },
   ]);
@@ -156,8 +195,10 @@ export const Graph = () => {
   }, [windowWidth]); 
 
   return (
-    <div className="container">
-      <div id="myPlot"  />
-    </div>
+    <Container>
+      <div className='container2'>
+        <div id="myPlot"  />
+      </div>
+    </Container>
   );
 };

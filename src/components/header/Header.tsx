@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../redux/dispatchHook";
 import { userSelector } from "../../redux/Auth/authSelector";
 import { useAppSelector } from "../../redux/dispatchHook";
 // import { Container } from "../container/Container"
+import { ThemeToggle } from "../Theme/ThemeToggle";
 
 export const Header: React.FC = () => {
 
@@ -29,6 +30,7 @@ export const Header: React.FC = () => {
         <header className="header">
           <img src={logo} alt="investIQ" className="header__logo" />
           <div className="header__user-inetrface">
+            <ThemeToggle />
             <div className="header__profile-part">
               <img src={userPicture} alt={user?.displayName || "User"} className="header__profile-picture" />
               <img src={Logout} alt="Logout" className="header__exit"/>
