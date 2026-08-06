@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { AddForm } from "../addForm/AddForm";
+import { TransTable } from "../transTable/TransTable";
 import './wrapperPage.scss'
 import { Container } from "../container/Container";
+
 export const WrapperPage: React.FC = () => {
     const [activeTab, setActiveTab] = useState("expense");
 return (
@@ -28,6 +30,7 @@ return (
               ) : (
                 <AddForm />
               )}
+              <TransTable />
             </div>
         </div>
     </Container>
