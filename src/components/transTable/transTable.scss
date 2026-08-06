@@ -1,0 +1,93 @@
+.transTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  &__border {
+    border: 2px solid #f5f6fb;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  &__wrapper {
+    padding: 16px 24px;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__headCell {
+    &:first-child {
+      border-top-left-radius: 16px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 16px;
+    }
+  }
+
+  &__head {
+    border-radius: 12px 12px 0 0;
+    background-color: #f5f6fb;
+  }
+
+  &__headRow {
+  }
+
+  &__headCell {
+    text-align: left;
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 2%;
+    vertical-align: middle;
+    text-transform: uppercase;
+    padding: 15px 8px;
+
+    &--action {
+      width: 40px;
+    }
+  }
+
+  &__body {
+  }
+
+  &__row {
+    border-bottom: 1px solid #f0f1f3;
+
+    &--empty {
+      height: 40px;
+    }
+  }
+
+  &__cell {
+    padding: 12px 8px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    letter-spacing: 4%;
+
+    &--sum {
+      font-weight: 700;
+      color: #16a34a;
+    }
+
+    &--action {
+      text-align: right;
+    }
+  }
+
+  &__deleteBtn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    border: none;
+    cursor: pointer;
+  }
+}
