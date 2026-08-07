@@ -4,7 +4,9 @@ import { useEffect } from "react";
 import { getTransactions, removeTransaction } from "../../redux/Transaction/transactionOparation";
 import { useAppDispatch } from "../../redux/dispatchHook";
 import { useAppSelector } from "../../redux/dispatchHook";
-
+import { MonthStatistic } from '../../components/monthStatistic/monthStatictic';
+import { Header } from "../../components/header/Header";
+import {PeriodDate} from "../../components/periodDate/PeriodDate";
 export default function HomePage() {
   const userData = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
@@ -15,11 +17,12 @@ export default function HomePage() {
     }
   }, [userData]);
   return (
-    <div>
-      <AddForm />
+    <>
+      <Header />
+      <PeriodDate />
       <WrapperPage />
-      <h1>InvestIQ</h1>
-      <p>Ви успішно увійшли</p>
-    </div>
+      <MonthStatistic />
+    </>
+      
   );
 }

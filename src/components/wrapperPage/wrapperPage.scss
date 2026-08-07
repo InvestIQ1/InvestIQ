@@ -1,32 +1,72 @@
+
 .wrapper {
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 10px 60px 0px rgba(170, 178, 197, 0.2);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
   position: relative;
   margin-top: 40px;
 
 
+    @media screen and (min-width: 768px) {
+        max-width: 670px;
+        height: 626px
+    }
+    @media screen and (min-width: 1200px) {
+      max-width: 1140px;
+      height: 569px;
+    }
+
   &__content {
-    background: white;
-    border-radius: 30px;
-    padding: 40px;
     min-height: 600px;
+
+    @media screen and (min-width: 768px) {
+      max-width: 750px;
+    }
+    @media screen and (min-width: 1200px) {
+      max-width: 1200px;
+    }
   }
 
   &__tabs {
-    display: flex;
-    gap: 10px;
-    margin-left: 30px;
+    position: absolute;
+    
+      @media screen and (min-width: 768px) {
+        position: inherit;
+        padding-left: 40px;
+        display: flex;
+      }
+
+      @media screen and (min-width: 1200px) {
+        padding-left: 30px;
+      }
+
 
     button {
-      width: 140px;
-      height: 50px;
-      padding: 20px 40px;
+      box-shadow: 0px 0px 1px 0px rgba(170, 178, 197, 0.2);
       border: none;
-      border-radius: 20px 20px 0 0;
-
-      background: #f5f6fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 159px;
+      height: 53px;
+      border-radius: none;
+      background-color: rgba(250, 251, 253, 1);
       cursor: pointer;
       font-weight: 700;
-      font-size: 14px;
       transition: 0.3s;
+
+      @media screen and (min-width: 768px) {
+        font-size: 12px;
+        width: 138px;
+        height: 40px;
+        border-radius: 20px 20px 0 0;
+      }
+      @media screen and (min-width: 1200px) {
+        font-size: 14px;
+      }
     }
 
     button:hover {
@@ -34,8 +74,13 @@
     }
 
     button.active {
-      background: white;
-      color: #ff6b08;
+      background-color: rgba(255, 117, 29, 1);
+      color: rgba(255, 255, 255, 1);
+        @media screen and (min-width: 768px) {
+          background: rgba(254, 254, 254, 1);
+          color: #ff6b08;
+      }
+
     }
   }
 }
