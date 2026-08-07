@@ -1,13 +1,19 @@
 import './transTable.scss';
 import { FaTrash } from "react-icons/fa";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/dispatchHook";
+import { selectTransactions } from "../../redux/Transaction/transactionSelectors";
+import { getTransactions, removeTransaction } from "../../redux/Transaction/transactionOparation";
 
 export const TransTable: React.FC = () => {
-  const rows = [
-    { id: "1", date: "05.09.2019", descr: "Моя зп", category: "ЗП", sum: 20000 },
-    { id: "2", date: "05.09.2019", descr: "% на залишок на карті", category: "Дод. прибуток", sum: 500 },
-  ];
+  const transactions = useAppSelector(selectTransactions);
+  const dispatch = useAppDispatch();
 
-  const emptyRowsCount = 6;
+  useEffect(() => {
+    dispatch(getTransactions());
+  }, [dispatch]);
+
+  const emptyRowsCount = Math.max(0, 6 - transactions.length);
 
   return (
     <div className="transTable__wrapper">
@@ -23,7 +29,7 @@ export const TransTable: React.FC = () => {
           </tr>
         </thead>
         <tbody className="transTable__body">
-          {rows.map((item) => (
+          {transactions.map((item) => (
             <tr className="transTable__row" key={item.id}>
               <td className="transTable__cell">{item.date}</td>
               <td className="transTable__cell">{item.descr}</td>
@@ -32,7 +38,10 @@ export const TransTable: React.FC = () => {
                 {item.sum.toFixed(2)} грн.
               </td>
               <td className="transTable__cell transTable__cell--action">
-                <button className="transTable__deleteBtn">
+                <button
+                  className="transTable__deleteBtn"
+                  onClick={() => dispatch(removeTransaction(item.id))}
+                >
                   <FaTrash />
                 </button>
               </td>

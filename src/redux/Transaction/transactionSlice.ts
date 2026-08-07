@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTransaction, getTransactions } from "./transactionOparation.ts";
+import {
+  addTransaction,
+  getTransactions,
+  removeTransaction,
+} from "./transactionOparation.ts";
 
 interface Transaction {
   id: string;
   category: string;
   descr: string;
   sum: number;
+  date: string;
 }
 
 interface TransactionState {
@@ -38,16 +43,22 @@ const transactionSlice = createSlice({
       state.error = action.payload as string;
     });
 
-     builder.addCase(getTransactions.pending, (state) => {
+    builder.addCase(getTransactions.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(getTransactions.fulfilled, (state, action) => {
       state.loading = false;
-      state.transactions = action.payload
+      state.transactions = action.payload;
     });
     builder.addCase(getTransactions.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload as string;
+    });
+
+    builder.addCase(removeTransaction.fulfilled, (state, action) => {
+      state.transactions = state.transactions.filter(
+        (t) => t.id !== action.payload,
+      );
     });
   },
 });

@@ -1,6 +1,4 @@
-// import { log } from 'firebase/firestore/pipelines';
 import { dataBaseDB } from "../../firebase/firebase.ts";
-// import { authFireBase } from '../../firebase/firebase.ts'
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { doc, getDoc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import axios from "axios";
@@ -12,8 +10,9 @@ interface Transaction {
   category: string;
   descr: string;
   sum: number;
+  date: string;
 }
-type NewTransaction = Omit<Transaction, "id">;
+type NewTransaction = Omit<Transaction, "id" | "date">;
 
 export const addTransaction = createAsyncThunk(
   "transaction/addTransaction",
@@ -24,7 +23,11 @@ export const addTransaction = createAsyncThunk(
     }
     try {
       const userDocRef = doc(dataBaseDB, "transaction", state.auth.user.uid);
-      const newTransaction: Transaction = { ...transData, id: nanoid() };
+      const newTransaction: Transaction = {
+        ...transData,
+        id: nanoid(),
+        date: new Date().toLocaleDateString("uk-UA"),
+      };
       await updateDoc(userDocRef, { transaction: arrayUnion(newTransaction) });
       return newTransaction;
     } catch (err: unknown) {
@@ -72,7 +75,6 @@ export const getTransactions = createAsyncThunk<
   { rejectWithValue: string; state: RootState }
 >("transactions/getTransactions", async (_, { rejectWithValue, getState }) => {
   const state = getState();
-  console.log("state", state);
 
   try {
     if (state.auth.user === null) {
@@ -81,7 +83,6 @@ export const getTransactions = createAsyncThunk<
 
     const userDocRef = doc(dataBaseDB, "transaction", state.auth.user.uid);
     const docSnap = await getDoc(userDocRef);
-    console.log(userDocRef, docSnap);
 
     if (docSnap.exists()) {
       return docSnap.data().transaction || [];
