@@ -11,7 +11,7 @@ export default function HomePage() {
   useEffect(() => {
     if (userData) {
       dispatch(getTransactions());
-      dispatch(removeTransaction('4ZQ53oIRUmRIfau9jbtIW'));
+      dispatch(removeTransaction("S6zKGrLx4YbhZiBNeK0Mk"));
     }
   }, [userData]);
   return (
