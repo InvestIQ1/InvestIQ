@@ -663,25 +663,25 @@ body{
     background:var(--white);
 
 
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:active{
-    -webkit-text-fill-color:$text-color;
-    -webkit-box-shadow:0 0 0 1000px $input-background inset;
-    box-shadow:0 0 0 1000px $input-background inset;
-    caret-color:$text-color;
-    transition:background-color 9999s ease-out 0s;
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active{
+      -webkit-text-fill-color:$text-color;
+      -webkit-box-shadow:0 0 0 1000px $input-background inset;
+      box-shadow:0 0 0 1000px $input-background inset;
+      caret-color:$text-color;
+      transition:background-color 9999s ease-out 0s;
+    }
+
+    &:-webkit-autofill:focus{
+      -webkit-box-shadow:
+        0 0 0 1000px $white inset,
+        0 0 0 4px rgba(255,117,29,0.12);
+      box-shadow:
+        0 0 0 4px var(--box-shadow-auth);
+    }
   }
-
-  &:-webkit-autofill:focus{
-    -webkit-box-shadow:
-      0 0 0 1000px $white inset,
-      0 0 0 4px rgba(255,117,29,0.12);
-    box-shadow:
-      0 0 0 4px var(--box-shadow-auth);
-
-
 
 
   @media screen and (max-width:768px){
