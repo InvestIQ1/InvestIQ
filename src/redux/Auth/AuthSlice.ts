@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { checkAuth, createUser, loginWithGitHub, loginWithGoogle, logoutUser, type AuthUser } from "./authOperation";
+import { checkAuth, loginUser, createUser, loginWithGitHub, loginWithGoogle, logoutUser, type AuthUser } from "./authOperation";
 
 const initialState: AuthState = {
     user: null,
@@ -41,7 +41,18 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.error =
                     action.error.message ?? "Помилка входу через Google";
-            })
+            }).addCase(loginUser.pending,(state)=>{
+  state.isLoading=true;
+  state.error=null;
+})
+.addCase(loginUser.fulfilled,(state,action)=>{
+  state.isLoading=false;
+  state.user=action.payload;
+})
+.addCase(loginUser.rejected,(state,action)=>{
+  state.isLoading=false;
+  state.error=action.error.message;
+})
 
             .addCase(loginWithGitHub.pending, (state) => {
                 state.isLoading = true;

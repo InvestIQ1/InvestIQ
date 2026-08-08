@@ -60,17 +60,17 @@ const [theme, setTheme] = useState<Theme>(() => {
         <Route
           path="/home"
           element={
-            // <PrivateRoute>
+            <PrivateRoute>
               <HomePage />
-            // </PrivateRoute>
+            </PrivateRoute>
           }
         />
         <Route
           path="/report"
           element={
-            // <PrivateRoute>
+            <PrivateRoute>
               <ReportPage />
-            // </PrivateRoute>
+            </PrivateRoute>
           }
         />
         <Route path="*" element={<ErrorPage />} />
