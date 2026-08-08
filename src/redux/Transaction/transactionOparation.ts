@@ -31,7 +31,13 @@ export const addTransaction = createAsyncThunk(
         id: nanoid(),
         date: new Date().toLocaleDateString("uk-UA"),
       };
-      await updateDoc(userDocRef, { transaction: arrayUnion(newTransaction) });
+      await setDoc(
+        userDocRef,
+        {
+          transaction: arrayUnion(newTransaction),
+        },
+        { merge: true },
+      );
       return newTransaction;
     } catch (err: unknown) {
       console.log(err);
