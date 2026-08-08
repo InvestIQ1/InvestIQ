@@ -8,6 +8,7 @@ import { getTransactions, removeTransaction } from "../../redux/Transaction/tran
 import { useAppDispatch } from "../../redux/dispatchHook";
 import { useAppSelector } from "../../redux/dispatchHook";
 import { MonthStatistic } from '../../components/monthStatistic/monthStatictic';
+import "./HomePage.scss";
 
 
 export default function HomePage() {
@@ -20,11 +21,12 @@ export default function HomePage() {
     }
   }, [userData]);
   return (
-    <>
+    <div className="home-page-bg">
+      <div className="home-page">
       <Header />
       <WrapperPage />
       <MonthStatistic />
-    </>
-      
+    </div>
+    </div>
   );
 }
