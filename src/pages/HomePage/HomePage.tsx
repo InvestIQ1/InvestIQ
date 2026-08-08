@@ -2,9 +2,7 @@
 
 import { WrapperPage } from "../../components/wrapperPage/WrapperPage";
 import { Header } from "../../components/header/Header";
-import { PeriodDate } from "../../components/periodDate/PeriodDate";
-
-import { AddForm } from "../../components/addForm/AddForm";
+// import { PeriodDate } from "../../components/periodDate/PeriodDate";
 import { useEffect } from "react";
 import { getTransactions, removeTransaction } from "../../redux/Transaction/transactionOparation";
 import { useAppDispatch } from "../../redux/dispatchHook";
