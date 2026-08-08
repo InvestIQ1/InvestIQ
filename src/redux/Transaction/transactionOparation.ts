@@ -5,12 +5,15 @@ import axios from "axios";
 import type { RootState } from "../store.ts";
 import { nanoid } from "nanoid";
 
+type TransactionType = "expense" | "income";
+
 interface Transaction {
   id: string;
   category: string;
   descr: string;
   sum: number;
   date: string;
+  type: TransactionType;
 }
 type NewTransaction = Omit<Transaction, "id" | "date">;
 

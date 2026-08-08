@@ -7,7 +7,12 @@ import { useAppDispatch } from "../../redux/dispatchHook";
 import "./addForm.scss";
 import { addTransaction } from "../../redux/Transaction/transactionOparation";
 
-export const AddForm: React.FC = () => {
+type TransactionType = "expense" | "income";
+
+interface AddFormProps {
+  transactionType: TransactionType;
+}
+export const AddForm: React.FC<AddFormProps> = ({ transactionType }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [category, setCategory] = useState("");
   const [descr, setDescr] = useState("");
@@ -38,10 +43,10 @@ export const AddForm: React.FC = () => {
 
     await dispatch(
       addTransaction({
-        
         category,
         descr,
         sum: Number(price),
+        type: transactionType,
       }),
     );
 
@@ -99,7 +104,9 @@ export const AddForm: React.FC = () => {
                     <option value="Розваги">Розваги</option>
                     <option value="Все для дому">Все для дому</option>
                     <option value="Техніка">Техніка</option>
-                    <option value="Комуналка, зв'язок">Комуналка, зв'язок</option>
+                    <option value="Комуналка, зв'язок">
+                      Комуналка, зв'язок
+                    </option>
                     <option value="Спорт, хобі">Спорт, хобі</option>
                     <option value="Навчання">Навчання</option>
                     <option value="Інше">Інше</option>
