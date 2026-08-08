@@ -6,8 +6,6 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
 import { Container } from '../container/Container';
-
-// import { Container } from "../container/Container";
 import './_graph.scss';
 
 export const Graph = () => {
