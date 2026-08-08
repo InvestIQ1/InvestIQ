@@ -18,14 +18,10 @@
 
 .addForm {
   width: 100%;
-  // padding: 15px 19px 43px;
   background-color: var(--background);
   display: flex;
   flex-direction: column;
   align-items: center;
-  // &__datawForm {
-  //   display: none;
-  // }
   &__inputs {
     stroke-width: 2px;
     stroke: var(--background);
@@ -38,11 +34,13 @@
     background-color: var(--background2);
     padding: 17px 0 17px 19px;
     font-family: "Roboto", sans-serif;
-    font-weight: 400;
+    // font-weight: 400;
+    font-weight: 500;
+
     font-size: 12px;
     letter-spacing: 0.02em;
     border: 2px var(--background) solid;
-    color: var(--descr-color);
+    color: var(--text);
     border-top-right-radius: 10px;
     border-top-left-radius: 20px;
     outline: none;
@@ -50,19 +48,39 @@
       color: var(--descr-color);
     }
   }
-  &__selectGoods {
-    background-color: var(--background2);
-    padding: 17px 0 17px 19px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    border: 2px var(--background) solid;
-    border-bottom-right-radius: 20px;
-    letter-spacing: 0.02em;
+ &__selectGoods {
+  background-color: var(--background2);
+  padding: 17px 0 17px 19px;
+  font-family: "Roboto", sans-serif;
+  // font-weight: 400;
+  font-weight: 500;
+
+  font-size: 12px;
+  border: 2px var(--background) solid;
+  border-bottom-right-radius: 20px;
+  letter-spacing: 0.02em;
+  color: var(--descr-color);
+  min-width: 282px;
+  outline: none;
+
+  &:invalid {
     color: var(--descr-color);
-    min-width: 282px;
-    outline: none;
   }
+
+  &:valid {
+    color: var(--text);
+  }
+
+  option {
+    color: var(--descr-color);
+    background-color: var(--background2);
+
+    &:checked {
+      color: var(--text);
+      background-color: #c6c6c6;
+    }
+  }
+}
   &__btn1 {
     border-radius: 16px;
     width: 125px;

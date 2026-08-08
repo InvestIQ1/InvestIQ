@@ -86,22 +86,23 @@ export const AddForm: React.FC = () => {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     defaultValue=""
+                    required
                   >
                     <option value="" disabled>
                       Категорія товару
                     </option>
 
-                    <option value="transport">Транспорт</option>
-                    <option value="products">Продукти</option>
-                    <option value="health">Здоров'я</option>
-                    <option value="alcohol">Алкоголь</option>
-                    <option value="entertainment">Розваги</option>
-                    <option value="home">Все для дому</option>
-                    <option value="technology">Техніка</option>
-                    <option value="utilities">Комуналка, зв'язок</option>
-                    <option value="sport">Спорт, хобі</option>
-                    <option value="education">Навчання</option>
-                    <option value="other">Інше</option>
+                    <option value="Транспорт">Транспорт</option>
+                    <option value="Продукти">Продукти</option>
+                    <option value="Здоров'я">Здоров'я</option>
+                    <option value="Алкоголь">Алкоголь</option>
+                    <option value="Розваги">Розваги</option>
+                    <option value="Все для дому">Все для дому</option>
+                    <option value="Техніка">Техніка</option>
+                    <option value="Комуналка, зв'язок">Комуналка, зв'язок</option>
+                    <option value="Спорт, хобі">Спорт, хобі</option>
+                    <option value="Навчання">Навчання</option>
+                    <option value="Інше">Інше</option>
                   </select>
                 </div>
 
