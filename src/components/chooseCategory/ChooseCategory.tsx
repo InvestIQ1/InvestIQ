@@ -106,7 +106,7 @@ const [slideDirection, setSlideDirection] = useState<"left" | "right">("right");
   ];
 
   const handleClick = (id: string) => {
-    setCurrentActive((prev) => (prev === id ? null : id));
+    setCurrentActive((prev) => (prev === id ? null : id));;
   };
 
 const handleChange = () => {
@@ -118,132 +118,7 @@ const handleChange = () => {
   const data = isSpends ? allExpensesArray : allIncomesArray;
   const title = isSpends ? "витрати" : "доходи";
 
-  // const spends = (
-  //   <div className="Category">
-  //     <div className="Category__choser">
-  //       <button
-  //         type="button"
-  //         className="Category__button"
-  //         onClick={handleChange}
-  //       >
-  //         {" "}
-  //         <svg
-  //           width="7"
-  //           height="12"
-  //           viewBox="0 0 7 12"
-  //           fill="none"
-  //           xmlns="http://www.w3.org/2000/svg"
-  //         >
-  //           <path
-  //             d="M5.28064 0.624512L1.28064 5.62451L5.28064 10.6245"
-  //             stroke="#FF751D"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>
-  //       </button>
-  //       <h2 className="Category__text">витрати</h2>
-  //       <button
-  //         type="button"
-  //         className="Category__button"
-  //         onClick={handleChange}
-  //       >
-  //         <svg
-  //           width="7"
-  //           height="12"
-  //           viewBox="0 0 7 12"
-  //           fill="none"
-  //           xmlns="http://www.w3.org/2000/svg"
-  //         >
-  //           <path
-  //             d="M0.780884 0.624512L4.78088 5.62451L0.780884 10.6245"
-  //             stroke="#FF751D"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>
-  //       </button>
-  //     </div>
-
-  //     <ul className="Category__list">
-  //       {allExpensesArray.map((item) => (
-  //         <li
-  //           className="Category__item"
-  //           onClick={() => handleClick(item.id)}
-  //           id={item.id}
-  //           key={item.id}
-  //         >
-  //           <p className="Category__money">{item.money}</p>
-  //           <img src={item.photo} alt="" className="Category__photo" />
-  //           <p className="Category__name">{item.name}</p>
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   </div>
-  // );
-
-  // const income = (
-  //   <div className="Category">
-  //     <div className="Category__choser">
-  //       <button
-  //         type="button"
-  //         className="Category__button"
-  //         onClick={() => {
-  //           setIsSpends(!isSpends);
-  //         }}
-  //       >
-  //         {" "}
-  //         <svg
-  //           width="7"
-  //           height="12"
-  //           viewBox="0 0 7 12"
-  //           fill="none"
-  //           xmlns="http://www.w3.org/2000/svg"
-  //         >
-  //           <path
-  //             d="M5.28064 0.624512L1.28064 5.62451L5.28064 10.6245"
-  //             stroke="#FF751D"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>{" "}
-  //       </button>
-  //       <h2 className="Category__text">доходи</h2>
-  //       <button
-  //         type="button"
-  //         className="Category__button"
-  //         onClick={() => {
-  //           setIsSpends(!isSpends);
-  //         }}
-  //       >
-  //         <svg
-  //           width="7"
-  //           height="12"
-  //           viewBox="0 0 7 12"
-  //           fill="none"
-  //           xmlns="http://www.w3.org/2000/svg"
-  //         >
-  //           <path
-  //             d="M0.780884 0.624512L4.78088 5.62451L0.780884 10.6245"
-  //             stroke="#FF751D"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>
-  //       </button>
-  //     </div>
-  //     <ul className="Category__list">
-  //       {allIncomesArray.map((item) => (
-  //         <li
-  //           className="Category__item"
-  //           onClick={() => handleClick(item.id)}
-  //           id={item.id}
-  //           key={item.id}
-  //         >
-  //           <p className="Category__money">{item.money}</p>
-  //           <img src={item.photo} alt="" className="Category__photo" />
-  //           <p className="Category__name">{item.name}</p>
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   </div>
-  // );
+  
 
 return (
   <motion.div
@@ -266,13 +141,13 @@ return (
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {" "}
+            
             <path
               d="M5.28064 0.624512L1.28064 5.62451L5.28064 10.6245"
               stroke="#FF751D"
               strokeWidth="2"
-            />{" "}
-          </svg>{" "}
+            />
+          </svg>
         </button>
 
         <h2 className="Category__text">{title}</h2>
@@ -289,12 +164,11 @@ return (
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {" "}
             <path
               d="M0.780884 0.624512L4.78088 5.62451L0.780884 10.6245"
               stroke="#FF751D"
               strokeWidth="2"
-            />{" "}
+            />
           </svg>
         </button>
       </div>

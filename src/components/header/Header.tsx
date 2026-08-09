@@ -6,7 +6,7 @@ import { logoutUser } from "../../redux/Auth/authOperation";
 import { useAppDispatch } from "../../redux/dispatchHook";
 import { userSelector } from "../../redux/Auth/authSelector";
 import { useAppSelector } from "../../redux/dispatchHook";
-// import { Container } from "../container/Container"
+import { Container } from "../container/Container"
 import { ThemeToggle } from "../Theme/ThemeToggle";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
@@ -33,15 +33,23 @@ export const Header: React.FC = () => {
 
   if (document.location.pathname === "/") {
     return (
+      <div className="header-bg">
+                <Container>
       <header className="header">
+
         <img src={logo} alt="investIQ" className="header__logo" />
+
       </header>
+              </Container>
+      </div>
     );
   } else {
     return (
       <>
-        {/* <Container> */}
+      <div className="header-bg">
+                          <Container>
         <header className="header">
+
           <img src={logo} alt="investIQ" className="header__logo" />
           <div className="header__user-inetrface">
             <ThemeToggle />
@@ -72,8 +80,11 @@ export const Header: React.FC = () => {
               onClick={handleLogout}
             />
           </div>
+                  
         </header>
-        {/* </Container> */}
+        </Container>
+        </div>
+
       </>
     );
   }

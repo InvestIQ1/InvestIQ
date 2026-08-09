@@ -1,0 +1,15 @@
+.next-page{
+    font-family: "Roboto", sans-serif;
+
+    &__link{
+font-weight: 400;
+font-size: 12px;
+letter-spacing: 0.04em;
+text-align: right;
+color: var(--text);
+text-decoration-line: none;
+display: flex;
+align-items: center;
+    }
+
+}
