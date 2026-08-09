@@ -10,6 +10,7 @@ import { useAppDispatch } from "../../redux/dispatchHook";
 import { useAppSelector } from "../../redux/dispatchHook";
 import { MonthStatistic } from "../../components/monthStatistic/monthStatictic";
 import { NextPage } from "../../components/nextPage/nextPage";
+
 import "./HomePage.scss";
 import { Container } from "../../components/container/Container";
 
@@ -26,6 +27,7 @@ export default function HomePage() {
 
     <div className="home-page-bg">
       <div className="home-page">
+
         <Header />
             <Container>
         <NextPage />
@@ -33,6 +35,7 @@ export default function HomePage() {
         <MonthStatistic />
             </Container>
       </div>
+
     </div>
   );
 }

@@ -1,29 +1,53 @@
-import React from 'react';
-import './monthStatistic.css';
+import React from "react";
+import "./monthStatistic.scss";
+import { useAppSelector } from "../../redux/dispatchHook";
+import { selectTransactions } from "../../redux/Transaction/transactionSelectors";
 
-const MOCK_SUMMARY_DATA = [
-  { id: '1', month: 'ЛИСТОПАД', total: '10 000.00' },
-  { id: '2', month: 'ЖОВТЕНЬ', total: '30 000.00' },
-  { id: '3', month: 'ВЕРЕСЕНЬ', total: '30 000.00' },
-  { id: '4', month: 'СЕРПЕНЬ', total: '20 000.00' },
-  { id: '5', month: 'ЛИПЕНЬ', total: '15 000.00' },
-  { id: '6', month: 'ЧЕРВЕНЬ', total: '18 000.00' },
-];
+type activeTab = "expense" | "income";
 
-export const MonthStatistic: React.FC = () => {
+interface Props {
+  activeTab: activeTab;
+}
+
+export const MonthStatistic: React.FC<Props> = ({ activeTab }) => {
+  const trans = useAppSelector(selectTransactions);
+
+  const sum = trans
+    .filter((tran) => {
+      return tran.type === activeTab;
+    })
+    .reduce((acc, tran) => {
+      return tran.sum + acc;
+    }, 0);
+
+  const getMonth = trans.map((tran) => {
+    const date = tran.date;
+    const [day, month, year] = date.split(".");
+    const transDate = new Date(+year, +month - 1, +day);
+    const monthDate = transDate.toLocaleString(navigator.language, {
+      month: "long",
+    });
+    return monthDate
+  });
+
+  const monthInfo = getMonth.filter((month, index, array) => {
+     console.log("month", month);
+     return array.indexOf(month) === index 
+  })
+  console.log(monthInfo);
+  
+
   return (
     <div className="month-statistic">
       <h3 className="month-statistic__title">ЗВЕДЕННЯ</h3>
       <ul className="month-statistic__list">
-        {MOCK_SUMMARY_DATA.map((item) => (
-          <li key={item.id} className="month-statistic__item">
-            <span className="month-statistic__month">{item.month}</span>
-            <span className="month-statistic__total">{item.total}</span>
+        {monthInfo.map((item) => (
+          <li key={item} className="month-statistic__item">
+            <span className="month-statistic__month">{item}</span>
+            <span className="month-statistic__total">{sum}</span>
           </li>
         ))}
       </ul>
     </div>
   );
 };
-
-export default {MonthStatistic}
