@@ -3,6 +3,7 @@ import { AddForm } from "../addForm/AddForm";
 import { TransTable } from "../transTable/TransTable";
 import "./wrapperPage.scss";
 import { Container } from "../container/Container";
+import { MonthStatistic } from "../monthStatistic/MonthStatictic"
 
 export const WrapperPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"expense" | "income">("expense");
@@ -26,8 +27,10 @@ export const WrapperPage: React.FC = () => {
       <div className="wrapper">
         <div className="wrapper__content">
           <AddForm transactionType={activeTab} />
-
-          <TransTable />
+          <div className="wrapper__tabWithStat">
+            <TransTable />
+            <MonthStatistic activeTab={activeTab}/>
+          </div>
         </div>
       </div>
     </Container>

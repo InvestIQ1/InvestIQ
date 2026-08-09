@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { getTransactions, removeTransaction } from "../../redux/Transaction/transactionOparation";
 import { useAppDispatch } from "../../redux/dispatchHook";
 import { useAppSelector } from "../../redux/dispatchHook";
-import { MonthStatistic } from '../../components/monthStatistic/monthStatictic';
+// import { MonthStatistic } from '../../components/monthStatistic/MonthStatictic';
 import "./HomePage.scss";
 
 
@@ -25,7 +25,6 @@ export default function HomePage() {
       <div className="home-page">
       <Header />
       <WrapperPage />
-      <MonthStatistic />
     </div>
     </div>
   );
