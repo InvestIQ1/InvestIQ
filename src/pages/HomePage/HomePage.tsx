@@ -8,6 +8,7 @@ import { getTransactions, removeTransaction } from "../../redux/Transaction/tran
 import { useAppDispatch } from "../../redux/dispatchHook";
 import { useAppSelector } from "../../redux/dispatchHook";
 import { MonthStatistic } from '../../components/monthStatistic/monthStatictic';
+import { Balance } from "../../components/balance/Balance";
 
 
 export default function HomePage() {
@@ -22,6 +23,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
+      <Balance />
       <WrapperPage />
       <MonthStatistic />
     </>

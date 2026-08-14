@@ -1,0 +1,37 @@
+.balance{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.expense__title{
+width: 63px;
+height: 20px;
+display: flex;
+flex-direction: row;
+align-items: center;
+color: rgba(82, 85, 95, 1);
+font-family: "Roboto";
+font-style: Bold;
+font-size: 14px;
+font-weight: 700;
+line-height: 16px;
+letter-spacing: 0%;
+text-align: left;
+}
+
+.expense__amount{
+width: 112px;
+height: 20px;
+display: flex;
+flex-direction: row;
+align-items: center;
+color: rgba(229, 57, 53, 1);
+font-family: "Roboto";
+font-style: Bold;
+font-size: 14px;
+font-weight: 700;
+line-height: 16px;
+letter-spacing: 4%;
+text-align: left;
+}
