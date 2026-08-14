@@ -1,16 +1,25 @@
+#desktop-statistic {
+  @media (max-width: 1199px) {
+    display: none;
+  }
+}
+
 .month-statistic {
-  margin-right: 40px;
+
+  @media (min-width: 768px) {
+          margin-right: 40px;
   width: 230px;
   height: 278px;
-  background-color: #f5f6fb;
+  background-color: var(--background2);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   overflow: hidden;
   font-family: "Roboto", sans-serif;
-  @media (max-width: 768px) {
-    display: none;
+  display: block;
+
   }
+
 
   &__title {
     padding: 12px 0;
@@ -21,8 +30,8 @@
     line-height: 1.17;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    color: #000000;
-    border-bottom: 2px solid #ffffff;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
   }
 
   &__list {
@@ -39,8 +48,8 @@
     font-size: 12px;
     line-height: 1.17;
     letter-spacing: 0.04em;
-    color: #52555f;
-    border-bottom: 2px solid #ffffff;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
 
     &:last-child {
       border-bottom: none;

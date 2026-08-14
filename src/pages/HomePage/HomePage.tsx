@@ -23,16 +23,18 @@ export default function HomePage() {
       dispatch(removeTransaction(""));
     }
   }, [userData]);
+
+  const isTablet : boolean = window.screen.width >= 768 && window.screen.width < 1200;
+    console.log(isTablet);
   return (
     <div className="home-page-bg">
       <div className="home-page">
-
         <Header />
-        
         <Balance />    
         <Container>
         <NextPage />
         <WrapperPage />
+        {isTablet ? <MonthStatistic activeTab="expense" id="tablet-statistic" /> : null}
             </Container>
       </div>
 

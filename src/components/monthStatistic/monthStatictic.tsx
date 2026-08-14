@@ -7,9 +7,10 @@ type activeTab = "expense" | "income";
 
 interface Props {
   activeTab: activeTab;
+  id: string;
 }
 
-export const MonthStatistic: React.FC<Props> = ({ activeTab }) => {
+export const MonthStatistic: React.FC<Props> = ({ activeTab, id }) => {
   const trans = useAppSelector(selectTransactions);
 
   const sum = trans
@@ -38,7 +39,7 @@ export const MonthStatistic: React.FC<Props> = ({ activeTab }) => {
   
 
   return (
-    <div className="month-statistic">
+    <div className="month-statistic" id={id}>
       <h3 className="month-statistic__title">ЗВЕДЕННЯ</h3>
       <ul className="month-statistic__list">
         {monthInfo.map((item) => (

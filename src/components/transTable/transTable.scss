@@ -1,9 +1,15 @@
 .transTable {
   width: 100%;
   border-collapse: collapse;
+    @media (min-width: 768px) {
+  min-width: 605px;
+  }
+    @media (min-width: 1200px) {
+  min-width: 760px;
+  }
 
   &__border {
-    border: 2px solid #f5f6fb;
+    border: 2px solid var(--background2);
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
   }
@@ -31,7 +37,8 @@
 
   &__head {
     border-radius: 12px 12px 0 0;
-    background-color: #f5f6fb;
+    background-color: var(--background2);
+;
   }
 
   &__headRow {
@@ -47,6 +54,7 @@
     vertical-align: middle;
     text-transform: uppercase;
     padding: 15px 8px;
+    color: var(--text);
 
     &--action {
       width: 40px;
@@ -57,7 +65,7 @@
   }
 
   &__row {
-    border-bottom: 1px solid #f0f1f3;
+    border-bottom: 1px solid var(--background2);
 
     &--empty {
       height: 40px;
@@ -71,10 +79,11 @@
     font-size: 12px;
     line-height: 100%;
     letter-spacing: 4%;
+    color: var(--color-text);
 
     &--sum {
       font-weight: 700;
-      color: #16a34a;
+      color: var(--color-success);
     }
 
     &--action {
@@ -86,7 +95,7 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: #f3f4f6;
+    background: var(--color-bg);
     border: none;
     cursor: pointer;
   }
