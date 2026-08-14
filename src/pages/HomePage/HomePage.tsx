@@ -28,11 +28,11 @@ export default function HomePage() {
       <div className="home-page">
 
         <Header />
-            <Container>
-        <Balance />
+        
+        <Balance />    
+        <Container>
         <NextPage />
         <WrapperPage />
-        <MonthStatistic />
             </Container>
       </div>
 
