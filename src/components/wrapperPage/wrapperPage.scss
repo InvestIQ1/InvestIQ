@@ -7,7 +7,7 @@
   border-bottom-right-radius: 30px;
   border-top-right-radius: 30px;
   position: relative;
-  margin-top: 40px;
+  // margin-top: 40px;
 
 
     @media screen and (min-width: 768px) {
@@ -32,15 +32,16 @@
 
   &__tabs {
     position: absolute;
+    margin-top: 9px;
     
       @media screen and (min-width: 768px) {
         position: inherit;
-        padding-left: 40px;
+        padding-left: 14px;
         display: flex;
       }
 
       @media screen and (min-width: 1200px) {
-        padding-left: 30px;
+        padding-left: 20px;
       }
 
 
