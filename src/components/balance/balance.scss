@@ -1,37 +1,175 @@
-.balance{
+.balance-container {
+  width: 100%;
+  max-width: 320px;
+  margin-inline: auto;
+  padding-inline: 20px;
+  box-sizing: border-box;
+}
+
+.balance {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "expense-title income-title"
+    "expense-amount income-amount";
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 85px;
+  margin-top: 20px;
+  padding: 12px 8px;
+  box-sizing: border-box;
+
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 10px 60px rgba(170, 178, 197, 0.2);
+
+  // Вертикальний розділювач на мобільному
+  &::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    left: 50%;
+    width: 1px;
+    background-color: rgba(82, 85, 95, 0.2);
+  }
+}
+
+.expense__title,
+.income__title,
+.expense__amount,
+.income__amount {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+}
+
+.expense__title,
+.income__title {
+  color: #52555f;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.expense__amount,
+.income__amount {
+  margin-top: 6px;
+  font-size: clamp(11px, 3.5vw, 14px);
+  line-height: 20px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.expense__title {
+  grid-area: expense-title;
+}
+
+.expense__amount {
+  grid-area: expense-amount;
+  color: #e53935;
+}
+
+.income__title {
+  grid-area: income-title;
+}
+
+.income__amount {
+  grid-area: income-amount;
+  color: #407946;
+}
+
+@media screen and (min-width: 768px) {
+  .balance-container {
+    max-width: 750px;
+    padding-inline: 26px;
+  }
+
+  .balance {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    min-height: 50px;
+    padding: 0 24px;
+    border-radius: 30px;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .expense__title,
+  .income__title,
+  .expense__amount,
+  .income__amount {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .expense__amount,
+  .income__amount {
+    margin-top: 0;
+    margin-left: 8px;
+  }
+
+  .expense__amount {
+    padding-right: 20px;
+    border-right: 1px solid rgba(82, 85, 95, 0.2);
+  }
+
+  .income__title {
+    margin-left: 20px;
+  }
 }
 
-.expense__title{
-width: 63px;
-height: 20px;
-display: flex;
-flex-direction: row;
-align-items: center;
-color: rgba(82, 85, 95, 1);
-font-family: "Roboto";
-font-style: Bold;
-font-size: 14px;
-font-weight: 700;
-line-height: 16px;
-letter-spacing: 0%;
-text-align: left;
-}
+@media screen and (min-width: 1200px) {
+  .balance-container {
+    max-width: 1200px;
+    padding-inline: 10px;
+  }
 
-.expense__amount{
-width: 112px;
-height: 20px;
-display: flex;
-flex-direction: row;
-align-items: center;
-color: rgba(229, 57, 53, 1);
-font-family: "Roboto";
-font-style: Bold;
-font-size: 14px;
-font-weight: 700;
-line-height: 16px;
-letter-spacing: 4%;
-text-align: left;
+  .balance {
+    max-width: 1140px;
+    margin-inline: auto;
+  }
+}
+[data-theme="dark"]{
+  .balance{
+    background-color:#1c1c1e;
+
+    box-shadow:
+      0 10px 60px rgba(0,0,0,.35),
+      inset 0 1px 0 rgba(255,255,255,.04);
+
+    &::after{
+      background-color:rgba(255,255,255,.12);
+    }
+  }
+
+  .expense__title,
+  .income__title{
+    color:#d1d1d6;
+  }
+
+  .expense__amount{
+    color:#ff6961;
+  }
+
+  .income__amount{
+    color:#66c56c;
+  }
+
+  @media screen and (min-width:768px){
+    .expense__amount{
+      border-right-color:rgba(255,255,255,.12);
+    }
+  }
 }

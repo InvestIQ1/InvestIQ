@@ -1,4 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { lazy, Suspense } from "react";
 import { useAppSelector } from "./redux/dispatchHook";
 import { useEffect } from "react";
@@ -53,10 +55,20 @@ const [theme, setTheme] = useState<Theme>(() => {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{theme, toggleTheme}}>
+  <ThemeContext.Provider value={{theme,toggleTheme}}>
+    <ToastContainer
+      position="top-right"
+      autoClose={3000}
+      hideProgressBar
+      closeOnClick
+      pauseOnHover
+      theme={theme}
+    />
+
     <Suspense fallback={<div>Завантаження</div>}>
       <Routes>
         <Route path="/" element={<AuthRedirect />} />
+
         <Route
           path="/home"
           element={
@@ -65,6 +77,7 @@ const [theme, setTheme] = useState<Theme>(() => {
             </PrivateRoute>
           }
         />
+
         <Route
           path="/report"
           element={
@@ -73,11 +86,12 @@ const [theme, setTheme] = useState<Theme>(() => {
             </PrivateRoute>
           }
         />
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Suspense>
-    </ThemeContext.Provider>
-  );
+  </ThemeContext.Provider>
+);
 }
 
 export default App;

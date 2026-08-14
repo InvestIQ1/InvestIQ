@@ -5,6 +5,9 @@ import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './redux/store.ts'
+import { ToastContainer } from 'react-toastify'
+import { ThemeContext } from './context/ThemeContext.tsx'
+import "./toast.css";
 
 const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
   ? "dark"
@@ -13,11 +16,19 @@ const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
 document.documentElement.dataset.theme = theme;
 
 createRoot(document.getElementById('root')!).render(
-  <Provider store={store}>
+<StrictMode>
+  <ToastContainer
+    position="top-right"
+    autoClose={3000}
+    hideProgressBar
+    closeOnClick
+    pauseOnHover
+    theme={theme}
+  />
+  <Provider store={store}> 
     <BrowserRouter>
-      <StrictMode>
         <App />
-      </StrictMode>
     </BrowserRouter>
   </Provider>
+  </StrictMode>
 )
