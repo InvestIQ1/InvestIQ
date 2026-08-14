@@ -6,7 +6,7 @@
   box-shadow: 0 10px 60px 0 rgba(170, 178, 197, 0.2);
   background: var(--background);
 
-  background: #fff;
+  background: linear-gradient(180deg, var(--background) 0%, var(--background) 100%);
 
   display: flex;
   flex-direction: column;
@@ -58,6 +58,17 @@
     display: flex;
     gap: 10px;
   }
+
+    &__name {
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--text);
+
+  }
+
 
   &__button {
     background: none;
@@ -112,15 +123,14 @@
   }
 
 
-  &__name {
-    font-weight: 400;
-    font-size: 12px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--text);
 
-  &.active {
+&__photo {
+  height: 56px;
+  width: 56px;
+  transition: transform .25s ease, filter .25s ease;
+}
+
+&.active {
     .Category__photo {
       transform: scale(1.15);
       filter: drop-shadow(0 0 8px rgba(255, 117, 29, 0.5));
@@ -130,28 +140,14 @@
       color: #FF751D;
       font-weight: 700;
     }
-
   }
-}
 
-&__photo {
-  height: 56px;
-  width: 56px;
-  transition: transform .25s ease, filter .25s ease;
-}
 
-&__name {
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  text-align: center;
-  color: #52555f;
-  transition: color .25s ease;
-}
 }
 
 ul {
   margin: 0;
   padding: 0;
+  margin-top: 20px;
+}
 }

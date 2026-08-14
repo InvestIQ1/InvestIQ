@@ -84,4 +84,8 @@
 
     }
   }
+  &__tabWithStat {
+    display: flex;
+    justify-content: space-between;
+  }
 }

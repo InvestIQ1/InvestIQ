@@ -5,12 +5,15 @@ import {
   removeTransaction,
 } from "./transactionOparation.ts";
 
+type TransactionType = "expense" | "income";
+
 interface Transaction {
   id: string;
   category: string;
   descr: string;
   sum: number;
   date: string;
+  type: TransactionType;
 }
 
 interface TransactionState {

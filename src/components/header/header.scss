@@ -1,15 +1,22 @@
+.header-bg {
+  background: var(--background);
+  height: 56px;
+  padding-top: 10px;
+}
+
 .header {
   font-family: "Roboto";
   background: var(--background);
-  height: 56px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  max-width: 100%;
+  
   
   &__logo {
     width: 99px;
     height: 33px;
+          transition: color 0.3s ease;
   }
 
   &__profile-picture {
@@ -17,6 +24,20 @@
     height: 32px;
     background-color: var(--background);
     border-radius: 50%;
+    outline: 1px solid var(--text);
+  }
+
+  &__profile-placeholder {
+    width: 32px;
+    height: 32px;
+    background-color: var(--background);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    font-weight: bold;
+    outline: 1px solid var(--text);
   }
   &__profile-name {
     display: none;
@@ -46,8 +67,23 @@
       align-items: center;
     }
 
+    &__log-out-icon {
+      display: block;
+      visibility: visible;
+      width: 20px;
+      height: 20px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
 
   @media screen and (min-width: 768px) {
+
+    &__log-out-icon {
+      display: none;
+      visibility: hidden;
+    }
+
     &__user-inetrface {
       width: 222px;
       height: 36px;
@@ -83,6 +119,14 @@
       display: block;
       visibility: visible;
       cursor: pointer;
+      transition: color 0.3s ease;
+    }  
+
+    &__log-out:hover {
+      color: #FF751D;
+      text-decoration: none;
+            transition: color 0.3s ease;
+
     }
 
     &__exit{

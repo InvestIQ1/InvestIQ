@@ -1,0 +1,34 @@
+.report-bg {
+
+
+
+@media screen and (min-width: 1200px) {
+          position: relative;
+  z-index: 0;
+  background-image: url("../../assets/pins_desktop.png");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100vw auto;
+}
+}
+
+.report {
+  position: relative;
+  z-index: -1;
+
+
+  &__vidgets{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .header-bg {
+margin-bottom: 20px;
+  }
+
+  .Category {
+    margin-bottom: 20px;
+  }
+}
