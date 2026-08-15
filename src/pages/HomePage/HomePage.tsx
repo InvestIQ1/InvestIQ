@@ -8,11 +8,11 @@ import {
 } from "../../redux/Transaction/transactionOparation";
 import { useAppDispatch } from "../../redux/dispatchHook";
 import { useAppSelector } from "../../redux/dispatchHook";
-import { MonthStatistic } from "../../components/monthStatistic/monthStatictic";
+import { MonthStatistic } from '../../components/monthStatistic/monthStatictic';
+import { Balance } from "../../components/balance/Balance";
 import { NextPage } from "../../components/nextPage/nextPage";
-
-import "./HomePage.scss";
 import { Container } from "../../components/container/Container";
+import "./HomePage.scss";
 
 export default function HomePage() {
   const userData = useAppSelector((state) => state.auth.user);
@@ -23,16 +23,18 @@ export default function HomePage() {
       dispatch(removeTransaction(""));
     }
   }, [userData]);
-  return (
 
+  const isTablet : boolean = window.screen.width >= 768 && window.screen.width < 1200;
+    console.log(isTablet);
+  return (
     <div className="home-page-bg">
       <div className="home-page">
-
         <Header />
-            <Container>
+        <Balance />    
+        <Container>
         <NextPage />
         <WrapperPage />
-        <MonthStatistic />
+        {isTablet ? <MonthStatistic activeTab="expense" id="tablet-statistic" /> : null}
             </Container>
       </div>
 

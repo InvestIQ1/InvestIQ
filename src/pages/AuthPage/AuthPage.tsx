@@ -7,6 +7,8 @@ import {
   loginWithGoogle,
   loginWithGitHub,
 } from "../../redux/Auth/authOperation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useAppDispatch } from "../../redux/dispatchHook";
 import { Header } from "../../components/header/Header";
 import { useNavigate } from "react-router-dom";
@@ -17,19 +19,24 @@ export default function AuthPage() {
 
   const [isRegister, setIsRegister] = useState(false);
 
-  const handleGitHubLogin = async () => {
+const handleGitHubLogin = async () => {
   const result = await dispatch(loginWithGitHub());
 
-if(loginWithGitHub.fulfilled.match(result)){
-  navigate("/home");
-}
+  if(loginWithGitHub.fulfilled.match(result)){
+    toast.success("Вхід через GitHub успішний");
+    navigate("/home");
+  }else{
+    toast.error("Не вдалося увійти через GitHub");
+  }
 };
-
 const handleGoogleLogin = async () => {
 const result = await dispatch(loginWithGoogle());
 
 if(loginWithGoogle.fulfilled.match(result)){
+  toast.success("Вхід через Google успішний");
   navigate("/home");
+}else{
+  toast.error("Не вдалося увійти через Google");
 }
 };
 
@@ -44,42 +51,50 @@ const handleLogin = async (event:FormEvent<HTMLFormElement>)=>{
   const result= await dispatch(loginUser({email,password}));
 
   if(loginUser.fulfilled.match(result)){
+    toast.success("Вхід успішний");
     navigate("/home");
+  }else{
+    toast.error("Не вдалося увійти"); 
   }
 };
 
-  const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const confirmPassword = formData.get("confirmPassword");
+const handleRegister = async (event:FormEvent<HTMLFormElement>)=>{
+  event.preventDefault();
 
-    if (
-      typeof name !== "string" ||
-      typeof email !== "string" ||
-      typeof password !== "string" ||
-      typeof confirmPassword !== "string"
-    ) {
-      return;
-    }
+  const formData=new FormData(event.currentTarget);
+  const name=formData.get("name");
+  const email=formData.get("email");
+  const password=formData.get("password");
+  const confirmPassword=formData.get("confirmPassword");
 
-    if (password !== confirmPassword) {
-      return;
-    }
+  if(
+    typeof name!=="string"||
+    typeof email!=="string"||
+    typeof password!=="string"||
+    typeof confirmPassword!=="string"
+  ){
+    toast.error("Заповніть всі поля");
+    return;
+  }
 
-   const result = await dispatch(createUser({
-  name,
-  email,
-  password,
-}));
+  if(password!==confirmPassword){
+    toast.error("Паролі не збігаються");
+    return;
+  }
 
-if(createUser.fulfilled.match(result)){
-  navigate("/home");
-}
-  };
+  const result=await dispatch(createUser({
+    name,
+    email,
+    password,
+  }));
 
+  if(createUser.fulfilled.match(result)){
+    toast.success("Акаунт успішно створено");
+    navigate("/home");
+  }else{
+    toast.error("Не вдалося створити акаунт");
+  }
+};
   return (
     <div className="auth-layout">
       <Header />
