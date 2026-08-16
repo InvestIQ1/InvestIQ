@@ -53,6 +53,8 @@ export const AddForm: React.FC<AddFormProps> = ({ transactionType }) => {
     handleReset();
   };
 
+  const isExpense = transactionType === "expense";
+
   const dateNow = new Date();
   const day = String(dateNow.getDate()).padStart(2, "0");
   const month = String(dateNow.getMonth() + 1).padStart(2, "0");
@@ -92,7 +94,8 @@ export const AddForm: React.FC<AddFormProps> = ({ transactionType }) => {
                     onChange={(e) => setCategory(e.target.value)}
                     defaultValue=""
                     required
-                  >
+                  >{isExpense ? (
+                    <>
                     <option value="" disabled>
                       Категорія товару
                     </option>
@@ -109,7 +112,13 @@ export const AddForm: React.FC<AddFormProps> = ({ transactionType }) => {
                     </option>
                     <option value="Спорт, хобі">Спорт, хобі</option>
                     <option value="Навчання">Навчання</option>
-                    <option value="Інше">Інше</option>
+                    <option value="Інше">Інше</option></>) : (
+                      <>
+                      <option value="" disabled>
+                      Категорія доходу
+                    </option><option value="ЗП">Зарплата</option>
+                    <option value="ДОД. ДОХІД">Додатковий дохід</option></>
+                    )}
                   </select>
                 </div>
 

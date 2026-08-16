@@ -1,6 +1,6 @@
 import { ChooseCategory } from "../../components/chooseCategory/ChooseCategory";
 import { Container } from "../../components/container/Container";
-// import { Graph } from "../../components/graph/Graph";
+import { Graph } from "../../components/graph/Graph";
 import { Header } from "../../components/header/Header";
 import { NextPage } from "../../components/nextPage/nextPage";
 import { PeriodDate } from "../../components/periodDate/PeriodDate";
@@ -19,7 +19,7 @@ export default function ReportPage() {
       </div>
       <ChooseCategory />
       </Container>
-      {/* <Graph /> */}
+      <Graph />
     </div>
     </div>
   );
