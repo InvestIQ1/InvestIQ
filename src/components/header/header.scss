@@ -25,6 +25,8 @@
     background-color: var(--background);
     border-radius: 50%;
     outline: 1px solid var(--text);
+    object-fit: cover;
+    flex-shrink: 0;
   }
 
   &__profile-placeholder {
@@ -38,6 +40,9 @@
     color: var(--text);
     font-weight: bold;
     outline: 1px solid var(--text);
+        object-fit: cover;
+        flex-shrink: 0;
+
   }
   &__profile-name {
     display: none;

@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../redux/dispatchHook";
 import "./addForm.scss";
 import { addTransaction } from "../../redux/Transaction/transactionOparation";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 type TransactionType = "expense" | "income";
 
@@ -37,11 +40,14 @@ export const AddForm: React.FC<AddFormProps> = ({ transactionType }) => {
 
   const handleSubmit = async () => {
     if (!descr || !category || price === "") {
-      alert("Будь ласка, заповніть усі поля.");
+      toast.warning("Будь ласка, заповніть усі поля.");
       return;
     }
-
-    await dispatch(
+    if (price < 0) {
+      toast.warning("Будь ласка, введіть додатнє значееня ціни.");
+      return;
+    }
+await dispatch(
       addTransaction({
         category,
         descr,
