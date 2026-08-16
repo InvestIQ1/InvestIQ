@@ -6,9 +6,12 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
 import { Container } from '../container/Container';
+import { useLocation } from 'react-router-dom';
 import './_graph.scss';
+// import { number } from 'motion/react';
 
 export const Graph = () => {
+  console.log(useLocation().pathname)
 const { theme } = useContext(ThemeContext)!;
     const [windowWidth, setWindowWidth] = useState<number>(
       typeof window !== 'undefined' ? window.innerWidth : 1024
@@ -26,21 +29,12 @@ const graphText = getGraphColor("--graph-text");
     const graphSecondary = getGraphColor("--graph-secondary");
 
   useEffect(() => {
-    const getGraphColor = (name: string) =>
-      getComputedStyle(document.documentElement)
-        .getPropertyValue(name)
-        .trim();
 
-    const graphText = getGraphColor("--graph-text");
-    const graphGrid = getGraphColor("--graph-grid");
-    const graphPrimary = getGraphColor("--graph-primary");
-    const graphSecondary = getGraphColor("--graph-secondary");
 
     // create data and layout here using those values
 
     Plotly.react("myPlot", data, layout);
 
-  return () => Plotly.purge("myPlot");
 }, [windowWidth, theme]);
 
 
@@ -77,6 +71,12 @@ const graphText = getGraphColor("--graph-text");
   const xMin = center - visibleSpan / 2;
   const xMax = center + visibleSpan / 2;
 
+  interface markerObj  {
+cornerradius: number
+            color: string[],
+
+  }
+
 
   
   const data: Data[] = [
@@ -96,7 +96,7 @@ const graphText = getGraphColor("--graph-text");
             cornerradius: 10,
             color: alternatingColors,
                   
-        } as any,
+        } as markerObj,
         
         width: barWidth
     },
@@ -187,11 +187,12 @@ const graphText = getGraphColor("--graph-text");
 
   useEffect(() => {
     Plotly.newPlot("myPlot", data, layout);
-    return () => {
-      Plotly.purge("myPlot");
-    };
+    // return () => {
+    //   Plotly.purge("myPlot");
+    // };
   }, [windowWidth]); 
 
+ if (useLocation().pathname === "/report") {
   return (
     <Container>
       <div className='container2'>
@@ -199,4 +200,7 @@ const graphText = getGraphColor("--graph-text");
       </div>
     </Container>
   );
+} else {
+  return null
+}
 };
