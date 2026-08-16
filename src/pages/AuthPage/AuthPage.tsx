@@ -7,7 +7,7 @@ import {
   loginWithGoogle,
   loginWithGitHub,
 } from "../../redux/Auth/authOperation";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAppDispatch } from "../../redux/dispatchHook";
 import { Header } from "../../components/header/Header";
