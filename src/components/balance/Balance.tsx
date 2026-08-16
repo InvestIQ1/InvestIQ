@@ -6,8 +6,8 @@ import {
 import "./balance.scss";
 
 export const Balance=()=>{
-  const income=useAppSelector(selectIncome);
-  const expense=useAppSelector(selectExpense);
+  const income = useAppSelector(selectIncome);
+  const expense = useAppSelector(selectExpense);
 
   return(
     <div className="balance-container">
