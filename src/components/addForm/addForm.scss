@@ -48,39 +48,39 @@
       color: var(--descr-color);
     }
   }
- &__selectGoods {
-  background-color: var(--background2);
-  padding: 17px 0 17px 19px;
-  font-family: "Roboto", sans-serif;
-  // font-weight: 400;
-  font-weight: 500;
-
-  font-size: 12px;
-  border: 2px var(--background) solid;
-  border-bottom-right-radius: 20px;
-  letter-spacing: 0.02em;
-  color: var(--descr-color);
-  min-width: 282px;
-  outline: none;
-
-  &:invalid {
-    color: var(--descr-color);
-  }
-
-  &:valid {
-    color: var(--text);
-  }
-
-  option {
-    color: var(--descr-color);
+  &__selectGoods {
     background-color: var(--background2);
+    padding: 17px 0 17px 19px;
+    font-family: "Roboto", sans-serif;
+    // font-weight: 400;
+    font-weight: 500;
 
-    &:checked {
+    font-size: 12px;
+    border: 2px var(--background) solid;
+    border-bottom-right-radius: 20px;
+    letter-spacing: 0.02em;
+    color: var(--descr-color);
+    min-width: 282px;
+    outline: none;
+
+    &:invalid {
+      color: var(--descr-color);
+    }
+
+    &:valid {
       color: var(--text);
-      background-color: #c6c6c6;
+    }
+
+    option {
+      color: var(--descr-color);
+      background-color: var(--background2);
+
+      &:checked {
+        color: var(--text);
+        background-color: #c6c6c6;
+      }
     }
   }
-}
   &__btn1 {
     border-radius: 16px;
     width: 125px;
@@ -168,7 +168,7 @@
   .addForm {
     &__datawForm {
       display: flex;
-      align-items: baseline;
+      align-items: center;
     }
     &__btns {
       margin-top: 0;
@@ -231,6 +231,7 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
+      margin-bottom: 17px;
     }
     &__inputs {
       flex-direction: row;
@@ -293,7 +294,7 @@
       margin-bottom: -4px;
     }
     &__data {
-      margin-bottom: 13px;
+      margin-bottom: 16px;
     }
-  }
+  } 
 }

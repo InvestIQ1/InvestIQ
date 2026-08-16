@@ -29,7 +29,7 @@ export const WrapperPage: React.FC = () => {
           <AddForm transactionType={activeTab} />
           <div className="wrapper__tabWithStat">
             <TransTable />
-            <MonthStatistic activeTab={activeTab}/>
+            <MonthStatistic activeTab={activeTab} id="desktop-statistic" />
           </div>
         </div>
       </div>

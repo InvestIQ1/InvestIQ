@@ -1,5 +1,5 @@
 .home-page-bg {
-
+padding-bottom: 64px;
 
 
 @media screen and (min-width: 1200px) {
@@ -15,4 +15,14 @@
 .home-page {
   position: relative;
   z-index: 1;
+}
+
+#tablet-statistic {
+display: none;
+    @media (min-width: 768px) {
+  margin-top: 70px;
+  display: block;  }
+  @media (min-width: 1200px) {
+    display: none;
+  }
 }

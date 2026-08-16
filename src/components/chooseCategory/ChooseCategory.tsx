@@ -15,76 +15,80 @@ import House from "../../assets/House.svg";
 import Salary from "../../assets/Salary.svg";
 import Income from "../../assets/Income.svg";
 import { motion } from "motion/react";
+import {useAppSelector} from "../../redux/dispatchHook";
+import { selectNeededExpense, selectNeededIncome } from "../../redux/Transaction/transactionSelectors";
 
 export const ChooseCategory: React.FC = () => {
   const [isSpends, setIsSpends] = useState(true);
   const [currentActive, setCurrentActive] = useState<string | null>(null);
 const [slideDirection, setSlideDirection] = useState<"left" | "right">("right");
-
-  const allExpensesArray = [
+const selectorExpense = useAppSelector(selectNeededExpense)
+const selectorIncome = useAppSelector(selectNeededIncome)
+// console.log(selectorExpense)
+ const allExpensesArray = [
     {
       id: "1",
-      money: 200.0,
+      money: selectorExpense.filter(action => action.category  === "Продукти" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Products,
       name: "Продукти",
     },
     {
       id: "2",
-      money: 200.0,
+      money: selectorExpense.filter(action => action.category  === "Алкоголь" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Alcohol,
       name: "Алкоголь",
     },
     {
       id: "3",
-      money: 200.0,
+      money: selectorExpense.filter(action => action.category  === "Здоров’я" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Health,
       name: "Здоров’я",
     },
     {
       id: "4",
-      money: 200.0,
+      money: selectorExpense.filter(action => action.category  === "Розваги" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Fun,
       name: "Розваги",
     },
     {
       id: "5",
-      money: 200.0,
+      money: selectorExpense.filter(action => action.category  === "Транспорт" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Transport,
       name: "Транспорт",
     },
     {
       id: "6",
-      money: 200.0,
+      money: selectorExpense.filter(action => action.category  === "Все для дому" ).reduce((acc, action) => acc + action.sum, 0),
       photo: House,
       name: "Все для дому",
     },
     {
       id: "7",
-      money: 200.0,
+      money: selectorExpense.filter(action => action.category  === "Техніка" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Machinery,
       name: "Техніка",
     },
     {
       id: "8",
-      money: 200.0,
+      money: selectorExpense.filter(action => action.category  === "Комуналка, зв’язок" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Bills,
       name: "Комуналка, зв’язок",
     },
     {
       id: "9",
-      money: 200.0,
+      money: selectorExpense.filter(action => action.category  === "Спорт, хобі" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Hobby,
       name: "Спорт, хобі",
     },
     {
       id: "10",
-      money: 200.0,
+      money: selectorExpense.filter(action => action.category  === "Навчання" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Learning,
       name: "Навчання",
     },
     {
       id: "11",
-      money: 200.0,
+      money: selectorExpense.filter(action => action.category  === "Інше" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Ufo,
       name: "Інше",
     },
@@ -93,13 +97,13 @@ const [slideDirection, setSlideDirection] = useState<"left" | "right">("right");
   const allIncomesArray = [
     {
       id: "12",
-      money: 200.0,
+      money: selectorIncome.filter(action => action.category  === "ЗП" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Salary,
       name: "ЗП",
     },
     {
       id: "13",
-      money: 200.0,
+      money: selectorIncome.filter(action => action.category  === "ДОД. ДОХІД" ).reduce((acc, action) => acc + action.sum, 0),
       photo: Income,
       name: "ДОД. ДОХІД",
     },
@@ -121,12 +125,10 @@ const handleChange = () => {
   
 
 return (
-  <motion.div
+  <div
     key={isSpends ? "expenses" : "income"}
     className={`Category ${slideDirection}`}
-    initial={{ opacity: 0, x: slideDirection === "right" ? 60 : -60 }}
-    animate={{ opacity: 1, x: 0 }}
-    exit={{ opacity: 0, x: slideDirection === "right" ? 60 : -60 }}
+   
   >
       <div className="Category__choser">
         <button
@@ -173,8 +175,12 @@ return (
         </button>
       </div>
 
-      <ul className="Category__list">
-        {data.map((item) => (
+      <motion.ul className="Category__list"
+       initial={{ opacity: 0, x: slideDirection === "right" ? 60 : -60 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: slideDirection === "right" ? 60 : -60 }}
+    >
+{data.filter((item) => item.money > 0).map((item) => (
           <li
             key={item.id}
             className={`Category__item ${currentActive === item.id ? "active" : ""}`}
@@ -185,7 +191,7 @@ return (
             <p className="Category__name">{item.name}</p>
           </li>
         ))}
-      </ul>
-    </motion.div>
+      </motion.ul>
+    </div>
   );
 };
