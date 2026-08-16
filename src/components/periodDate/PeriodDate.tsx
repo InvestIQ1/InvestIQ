@@ -9,11 +9,10 @@ export const PeriodDate : React.FC = () => {
     const [yearNumber, setYearNumber] = useState(date.getFullYear())
     const [direction, setDirection] = useState<0 | 1 | -1>(0);
 
-    const changeMonth = (value: number) => {
+const changeMonth = (value: -1 | 1) => {
   setDirection(value);
   setMonthNumber(prev => prev + value);
 };
-
     const monthNames : string[] = ["січень", "лютий", "березень", "квітень", "травень", "червень", "липень", "серпень", "вересень", "жовтень", "листопад", "грудень"];
 
     const showingDate = () => {
