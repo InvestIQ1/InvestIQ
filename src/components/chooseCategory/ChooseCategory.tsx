@@ -15,17 +15,28 @@ import House from "../../assets/House.svg";
 import Salary from "../../assets/Salary.svg";
 import Income from "../../assets/Income.svg";
 import { motion } from "motion/react";
-import {useAppSelector} from "../../redux/dispatchHook";
+import { selectCategory } from "../../redux/Category/categorySelector";
 import { selectNeededExpense, selectNeededIncome } from "../../redux/Transaction/transactionSelectors";
+import { changeCategory } from "../../redux/Category/categorySlice";
+import { useAppDispatch, useAppSelector } from "../../redux/dispatchHook";
+import type { Image } from "plotly.js";
 
 export const ChooseCategory: React.FC = () => {
   const [isSpends, setIsSpends] = useState(true);
   const [currentActive, setCurrentActive] = useState<string | null>(null);
+  const category = useAppSelector(selectCategory)
 const [slideDirection, setSlideDirection] = useState<"left" | "right">("right");
 const selectorExpense = useAppSelector(selectNeededExpense)
 const selectorIncome = useAppSelector(selectNeededIncome)
-// console.log(selectorExpense)
- const allExpensesArray = [
+
+interface item {
+  id: string,
+  money: number,
+  photo: string,
+  name: string
+}
+
+ const allExpensesArray : item[] = [
     {
       id: "1",
       money: selectorExpense.filter(action => action.category  === "Продукти" ).reduce((acc, action) => acc + action.sum, 0),
@@ -94,7 +105,7 @@ const selectorIncome = useAppSelector(selectNeededIncome)
     },
   ];
 
-  const allIncomesArray = [
+  const allIncomesArray : item[] = [
     {
       id: "12",
       money: selectorIncome.filter(action => action.category  === "ЗП" ).reduce((acc, action) => acc + action.sum, 0),
@@ -109,20 +120,30 @@ const selectorIncome = useAppSelector(selectNeededIncome)
     },
   ];
 
-  const handleClick = (id: string) => {
-    setCurrentActive((prev) => (prev === id ? null : id));;
-  };
+
 
 const handleChange = () => {
   setCurrentActive(null);
   setSlideDirection(isSpends ? "left" : "right");
   setIsSpends((prev) => !prev);
 };
-
   const data = isSpends ? allExpensesArray : allIncomesArray;
   const title = isSpends ? "витрати" : "доходи";
+  const dispatch = useAppDispatch()
+    const handleClick = (id: string) => {
+    setCurrentActive((prev) => (prev === id ? null : id));
+    const activeCategory : string | undefined = data.find((item) => item.id === id)?.name
+if (changeCategory === undefined || activeCategory === undefined) {
+    return;
+} else if (activeCategory === category){
+dispatch(changeCategory(""));
+} else {
+  console.log("tyytyt")
+  dispatch(changeCategory(activeCategory));
+}
 
-  
+
+  };
 
 return (
   <div

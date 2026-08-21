@@ -3,13 +3,14 @@ import { IoIosStats } from "react-icons/io";
 // import  { useContext } from "react";
 // import { ThemeContext } from "../../context/ThemeContext";
 import { FaArrowLeft } from "react-icons/fa";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 
 export const NextPage: React.FC = () => {
+  const location = useLocation().pathname
     // const context = useContext(ThemeContext);
 
-    if (document.location.pathname === "/home") {
+    if (location === "/home") {
     return (
     <div className="next-page">
       <NavLink to="/report" className="next-page__link">
@@ -17,7 +18,7 @@ export const NextPage: React.FC = () => {
       </NavLink>
     </div>
     );
-  } else if (document.location.pathname === "/report") {
+  } else if (location === "/report") {
     return (
       <div className="next-page">
         <NavLink to="/home" className="next-page__link">

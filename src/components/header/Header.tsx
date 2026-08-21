@@ -11,8 +11,10 @@ import { ThemeToggle } from "../Theme/ThemeToggle";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { useState } from "react";
+  import { useLocation } from "react-router-dom";
 
 export const Header: React.FC = () => {
+    console.log(useLocation().pathname)
   const context = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const user = useAppSelector(userSelector);
@@ -31,7 +33,7 @@ export const Header: React.FC = () => {
     logo = Alogo;
   }
 
-  if (document.location.pathname === "/") {
+  if (useLocation().pathname === "/") {
     return (
       <div className="header-bg">
                 <Container>
