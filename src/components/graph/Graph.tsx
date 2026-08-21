@@ -7,11 +7,13 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
 import { Container } from '../container/Container';
 import { useLocation } from 'react-router-dom';
+import { useAppSelector } from '../../redux/dispatchHook';
+import { selectCategory } from '../../redux/Category/categorySelector';
+import { selectTransactions } from '../../redux/Transaction/transactionSelectors';
 import './_graph.scss';
 // import { number } from 'motion/react';
 
 export const Graph = () => {
-  console.log(useLocation().pathname)
 const { theme } = useContext(ThemeContext)!;
     const [windowWidth, setWindowWidth] = useState<number>(
       typeof window !== 'undefined' ? window.innerWidth : 1024
@@ -28,14 +30,18 @@ const graphText = getGraphColor("--graph-text");
     const graphPrimary = getGraphColor("--graph-primary");
     const graphSecondary = getGraphColor("--graph-secondary");
 
+const category = useAppSelector(selectCategory);
+const transactions = useAppSelector(selectTransactions);
+
   useEffect(() => {
 
 
     // create data and layout here using those values
 
     Plotly.react("myPlot", data, layout);
+    console.log(data)
 
-}, [windowWidth, theme]);
+  }, [windowWidth, theme, transactions, category]);
 
 
 
@@ -53,8 +59,18 @@ const graphText = getGraphColor("--graph-text");
   const tickLen = isMobile ? 8 : 8
   const marginScreen = isMobile ? { t: 20, b: 20, l: 0, r: 0 } : isTablet ? { t: 10, b: 45, l: 0, r: 0 } : { t: 10, b: 45, l: 0, r: 0 }
   const orientationOf = isMobile ? "h" : "v"
-  const xArray: string[] = ["Свинина", "Гов’ядина", "Курятина", "Риба", "Паніні", "Кава", "Спагетті", "Шоколад", "Маслини", "Зелень"];
-  const yArray: number[] = [5000, 4500, 3200, 2100, 1800, 1700, 1500, 800, 500, 300];
+  
+
+const xArray: string[] = transactions
+  .filter((transaction) => transaction.category === category)
+  .map((transaction) => transaction.descr);  
+  console.log(xArray)
+
+const yArray: number[] = transactions
+  .filter((transaction) => transaction.category === category)
+  .map((transaction) => transaction.sum);  
+  console.log(yArray)
+
   const colorOne = graphPrimary;
   const colorTwo = graphSecondary;
   const alternatingColors = xArray.map((_, index) => 
@@ -185,18 +201,11 @@ cornerradius: number
   ]);
 }
 
-  useEffect(() => {
-    Plotly.newPlot("myPlot", data, layout);
-    // return () => {
-    //   Plotly.purge("myPlot");
-    // };
-  }, [windowWidth]); 
-
  if (useLocation().pathname === "/report") {
   return (
     <Container>
       <div className='container2'>
-        <div id="myPlot"  />
+        <div id="myPlot" />
       </div>
     </Container>
   );
