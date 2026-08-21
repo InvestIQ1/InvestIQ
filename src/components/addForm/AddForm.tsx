@@ -133,13 +133,14 @@ await dispatch(
                     className="addForm__prizeCounter"
                     type="number"
                     value={price}
+                     min="0"
                     onChange={(e) => {
                       const value = e.target.value;
 
                       if (value === "") {
                         setPrice("");
                       } else {
-                        setPrice(Number(value));
+                       setPrice(Math.max(0, Number(value)));
                       }
                     }}
                     placeholder={isMobile ? "00.00 UAH" : "00.00"}

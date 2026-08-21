@@ -3,6 +3,13 @@
   box-sizing: border-box;
   border-top-right-radius: 30px;
 }
+.addForm__prizeCounter {
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
 
 .arrorIcon {
   color: var(--button-background);
@@ -296,5 +303,5 @@
     &__data {
       margin-bottom: 16px;
     }
-  } 
+  }
 }
