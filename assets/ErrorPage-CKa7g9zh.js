@@ -1,1 +1,0 @@
-import{i as e}from"./index-DbkqTDyD.js";var t=e();function n(){return(0,t.jsx)(`div`,{})}export{n as default};
