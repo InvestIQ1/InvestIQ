@@ -30,9 +30,12 @@ text-align: center;
 color: var(--title-text);
     }
 
+
+
     &__box{
         display: flex;
-        gap: 10px;
+        gap: 5px;
+        flex-direction: column;
     }
 
     &__button{
