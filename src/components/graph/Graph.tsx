@@ -33,16 +33,6 @@ const graphText = getGraphColor("--graph-text");
 const category = useAppSelector(selectCategory);
 const transactions = useAppSelector(selectTransactions);
 
-  useEffect(() => {
-
-
-    // create data and layout here using those values
-
-    Plotly.react("myPlot", data, layout);
-    console.log(data)
-
-  }, [windowWidth, theme, transactions, category]);
-
 
 
   useEffect(() => {
@@ -101,6 +91,7 @@ cornerradius: number
     y: isMobile ? xArray : yArray,
     type: "bar",
     orientation: orientationOf,
+    width: isMobile ? 0.2 : barWidth,
     text: yArray.map(String),
     textposition: "outside",
     textfont: {
@@ -114,7 +105,6 @@ cornerradius: number
                   
         } as markerObj,
         
-        width: barWidth
     },
 
   ];
@@ -147,6 +137,8 @@ cornerradius: number
       },
       ticklen: tickLen,              
       tickcolor: "transparent",
+          tickvals: xArray, 
+    ticktext: xArray
     },
 
     yaxis: isMobile ? {
@@ -200,6 +192,15 @@ cornerradius: number
     },
   ]);
 }
+
+  useEffect(() => {
+
+
+    // create data and layout here using those values
+    Plotly.react("myPlot", data, layout);
+    console.log(layout)
+
+  }, [windowWidth, theme, transactions, category]);
 
  if (useLocation().pathname === "/report") {
   return (
