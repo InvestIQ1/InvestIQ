@@ -1,7 +1,12 @@
 .report-bg {
   font-family: "Roboto";
   z-index: 0;
-
+    @media screen and (min-width: 768px) {
+      background-image: url(../../assets/tablet-bg.svg);
+          background-repeat: no-repeat;
+    background-position: 90% 93%;
+    background-size: 200px auto;
+    }
 
 @media screen and (min-width: 1200px) {
           position: relative;

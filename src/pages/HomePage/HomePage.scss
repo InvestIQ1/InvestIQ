@@ -11,12 +11,23 @@
   //   bottom: 60px;
   //  background-size: 280px;
   // }
+    @media screen and (min-width: 768px) {
+      background-image: url(../../assets/tablet-bg.svg);
+          background-repeat: no-repeat;
+    background-position: 90% 93%;
+    background-size: 200px auto;
+    }
+        @media screen and (min-width: 920px) {
+
+    background-position: 80% 93%;
+
+    }
+
 
   @media screen and (min-width: 1200px) {
     position: relative;
     z-index: 0;
     background-image: url("../../assets/pins_desktop.png");
-    background-repeat: no-repeat;
     background-position: left bottom;
     background-size: 100vw auto;
   }
