@@ -5,21 +5,18 @@
 }
 
 .month-statistic {
-
   @media (min-width: 768px) {
-          margin-right: 40px;
-  width: 230px;
-  height: 278px;
-  background-color: var(--background2);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  overflow: hidden;
-  font-family: "Roboto", sans-serif;
-  display: block;
-
+    margin-right: 40px;
+    width: 230px;
+    height: 278px;
+    background-color: var(--background2);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
+    display: block;
   }
-
 
   &__title {
     padding: 12px 0;

@@ -1,16 +1,25 @@
 .home-page-bg {
-padding-bottom: 64px;
+  padding-bottom: 64px;
   z-index: 0;
+  // @media screen and (min-width: 768px) and (max-width: 1200px) {
+  //   background-image: url("../../assets/bgZvedena.png");
+  //   position: relative;
+  //   z-index: 0;
+  //   background-repeat: no-repeat;
+  //   background-position: right bottom;
+  //   right: 120px;
+  //   bottom: 60px;
+  //  background-size: 280px;
+  // }
 
-
-@media screen and (min-width: 1200px) {
-          position: relative;
-  z-index: 0;
-  background-image: url("../../assets/pins_desktop.png");
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  background-size: 100vw auto;
-}
+  @media screen and (min-width: 1200px) {
+    position: relative;
+    z-index: 0;
+    background-image: url("../../assets/pins_desktop.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 100vw auto;
+  }
 }
 
 .home-page {
@@ -19,10 +28,11 @@ padding-bottom: 64px;
 }
 
 #tablet-statistic {
-display: none;
-    @media (min-width: 768px) {
-  margin-top: 70px;
-  display: block;  }
+  display: none;
+  @media (min-width: 768px) {
+    margin-top: 70px;
+    display: block;
+  }
   @media (min-width: 1200px) {
     display: none;
   }
