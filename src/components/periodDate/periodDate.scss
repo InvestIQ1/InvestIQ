@@ -1,47 +1,47 @@
-.Period{
-    font-family: "Roboto";
-    width: 134px;
-height: 47px;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-gap: 2px;
-margin: 0 auto;
-@media screen and (min-width: 768px) {
+.Period {
+  font-family: "Roboto";
+  width: 134px;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0 auto;
+  @media screen and (min-width: 768px) {
     margin: 0;
-    }
+  }
 
+  &__text {
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: var(--text);
+  }
 
-    &__text{
-font-weight: 400;
-font-size: 12px;
-letter-spacing: 0.04em;
-text-align: center;
-color: var(--text);
-    }
+  &__date {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--title-text);
+  }
 
-    &__date{
-font-weight: 700;
-font-size: 14px;
-letter-spacing: 0.02em;
-text-transform: uppercase;
-text-align: center;
-color: var(--title-text);
-    }
+  &__box {
+    display: flex;
+    gap: 10px;
+  }
 
-    &__box{
-        display: flex;
-        gap: 10px;
-    }
-
-    &__button{
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
+  &__button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 }
 
-h2, p{
-    margin: 0px;
+h2,
+p {
+  margin: 0px;
 }

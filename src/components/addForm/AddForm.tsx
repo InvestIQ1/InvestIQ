@@ -9,7 +9,6 @@ import { addTransaction } from "../../redux/Transaction/transactionOparation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 type TransactionType = "expense" | "income";
 
 interface AddFormProps {
@@ -47,7 +46,7 @@ export const AddForm: React.FC<AddFormProps> = ({ transactionType }) => {
       toast.warning("Будь ласка, введіть додатнє значееня ціни.");
       return;
     }
-await dispatch(
+    await dispatch(
       addTransaction({
         category,
         descr,
@@ -100,30 +99,35 @@ await dispatch(
                     onChange={(e) => setCategory(e.target.value)}
                     defaultValue=""
                     required
-                  >{isExpense ? (
-                    <>
-                    <option value="" disabled>
-                      Категорія товару
-                    </option>
-
-                    <option value="Транспорт">Транспорт</option>
-                    <option value="Продукти">Продукти</option>
-                    <option value="Здоров'я">Здоров'я</option>
-                    <option value="Алкоголь">Алкоголь</option>
-                    <option value="Розваги">Розваги</option>
-                    <option value="Все для дому">Все для дому</option>
-                    <option value="Техніка">Техніка</option>
-                    <option value="Комуналка, зв'язок">
-                      Комуналка, зв'язок
-                    </option>
-                    <option value="Спорт, хобі">Спорт, хобі</option>
-                    <option value="Навчання">Навчання</option>
-                    <option value="Інше">Інше</option></>) : (
+                  >
+                    {isExpense ? (
                       <>
-                      <option value="" disabled>
-                      Категорія доходу
-                    </option><option value="ЗП">Зарплата</option>
-                    <option value="ДОД. ДОХІД">Додатковий дохід</option></>
+                        <option value="" disabled>
+                          Категорія товару
+                        </option>
+
+                        <option value="Транспорт">Транспорт</option>
+                        <option value="Продукти">Продукти</option>
+                        <option value="Здоров'я">Здоров'я</option>
+                        <option value="Алкоголь">Алкоголь</option>
+                        <option value="Розваги">Розваги</option>
+                        <option value="Все для дому">Все для дому</option>
+                        <option value="Техніка">Техніка</option>
+                        <option value="Комуналка, зв'язок">
+                          Комуналка, зв'язок
+                        </option>
+                        <option value="Спорт, хобі">Спорт, хобі</option>
+                        <option value="Навчання">Навчання</option>
+                        <option value="Інше">Інше</option>
+                      </>
+                    ) : (
+                      <>
+                        <option value="" disabled>
+                          Категорія доходу
+                        </option>
+                        <option value="ЗП">Зарплата</option>
+                        <option value="ДОД. ДОХІД">Додатковий дохід</option>
+                      </>
                     )}
                   </select>
                 </div>
@@ -133,14 +137,14 @@ await dispatch(
                     className="addForm__prizeCounter"
                     type="number"
                     value={price}
-                     min="0"
+                    min="0"
                     onChange={(e) => {
                       const value = e.target.value;
 
                       if (value === "") {
                         setPrice("");
                       } else {
-                       setPrice(Math.max(0, Number(value)));
+                        setPrice(Math.max(0, Number(value)));
                       }
                     }}
                     placeholder={isMobile ? "00.00 UAH" : "00.00"}

@@ -1,4 +1,4 @@
-// import type { JSX } from "react/jsx-runtime"
+
 import type { PropsWithChildren } from "react"
 import './container.scss'
 export const Container = ({children}: PropsWithChildren) => {
