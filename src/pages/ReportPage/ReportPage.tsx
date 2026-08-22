@@ -8,6 +8,7 @@ import { useAppSelector } from "../../redux/dispatchHook";
 import { selectCategory } from "../../redux/Category/categorySelector";
 
 import "./ReportPage.scss";
+import { Balance } from "../../components/balance/Balance";
 
 export default function ReportPage() {
 const existCategory: boolean = !!useAppSelector(selectCategory)
@@ -16,8 +17,11 @@ const existCategory: boolean = !!useAppSelector(selectCategory)
     <div className="report">
       <Header />
       <Container>
-      <div className="report__vidgets">
+        <Balance />    
+      <div className="report__vidgets"> 
+     
       <NextPage />
+    
       <PeriodDate />
       </div>
       <ChooseCategory />
