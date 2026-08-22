@@ -12,7 +12,7 @@ import { MonthStatistic } from '../../components/monthStatistic/monthStatictic';
 import { Balance } from "../../components/balance/Balance";
 import { NextPage } from "../../components/nextPage/nextPage";
 import { Container } from "../../components/container/Container";
-import "./HomePage.scss";
+ import "./HomePage.scss";
 
 export default function HomePage() {
   const userData = useAppSelector((state) => state.auth.user);
