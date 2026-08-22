@@ -1,81 +1,79 @@
 .report-bg {
   font-family: "Roboto";
   z-index: 0;
-    @media screen and (min-width: 768px) {
-      background-image: url(../../assets/tablet-bg.svg);
-          background-repeat: no-repeat;
+  @media screen and (min-width: 768px) {
+    background-image: url(../../assets/tablet-bg.svg);
+    background-repeat: no-repeat;
     background-position: 90% 93%;
     background-size: 200px auto;
-    }
+  }
 
-@media screen and (min-width: 1200px) {
-          position: relative;
-  background-image: url("../../assets/pins_desktop.png");
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  background-size: 100vw auto;
-}
+  @media screen and (min-width: 1200px) {
+    position: relative;
+    background-image: url("../../assets/pins_desktop.png");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 100vw auto;
+  }
 }
 
 .report {
   position: relative;
   z-index: 1;
 
-  
-  &__title{
-        margin-bottom: 20px;
+  &__title {
+    margin-bottom: 20px;
     color: var(--text-color);
     font-size: 10px;
     font-weight: 700;
-            @media screen and (min-width: 768px) {
-              font-size: 20px;
-            }
+    @media screen and (min-width: 768px) {
+      font-size: 20px;
+    }
     @media screen and (min-width: 1200px) {
-font-size: 30px;
+      font-size: 30px;
+    }
   }
-}
 
-  &__placeholder{
-        margin: 0 auto;
+  &__placeholder {
+    margin: 0 auto;
     touch-action: none;
     width: 100%;
     max-width: 282px;
     height: 440px;
     background-color: var(--background);
-      background-color: var(--background);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-        @media screen and (min-width: 768px) {
-    max-width: 750px;
-    height: 400px;
-        border: 2px solid var(--background);
-    border-radius: 20px;
-  }
-  @media screen and (min-width: 1200px) {
-    max-width: 1160px;
-    height: 405px;
-  }
+    background-color: var(--background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media screen and (min-width: 768px) {
+      max-width: 750px;
+      height: 400px;
+      border: 2px solid var(--background);
+      border-radius: 20px;
+    }
+    @media screen and (min-width: 1200px) {
+      max-width: 1160px;
+      height: 405px;
+    }
   }
 
-  &__vidgets{
+  &__vidgets {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
     flex-direction: column;
     gap: 20px;
-            @media screen and (min-width: 768px) {
-flex-direction: row;
-  }
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+    }
   }
 
   .header-bg {
-margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 
   .Category {
     margin-bottom: 20px;
   }
-
 }

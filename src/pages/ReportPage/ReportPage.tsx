@@ -11,23 +11,30 @@ import "./ReportPage.scss";
 import { Balance } from "../../components/balance/Balance";
 
 export default function ReportPage() {
-const existCategory: boolean = !!useAppSelector(selectCategory)
+  const existCategory: boolean = !!useAppSelector(selectCategory);
   return (
     <div className="report-bg">
-    <div className="report">
-      <Header />
-      <Container>
-        <Balance />    
-      <div className="report__vidgets"> 
-     
-      <NextPage />
-    
-      <PeriodDate />
+      <div className="report">
+        <Header />
+        <Container>
+          <Balance />
+          <div className="report__vidgets">
+            <NextPage />
+
+            <PeriodDate />
+          </div>
+          <ChooseCategory />
+          {existCategory ? (
+            <Graph />
+          ) : (
+            <div className="report__placeholder">
+              <h2 className="report__title">
+                НАТИСНІТЬ НА КАТЕГОРІЮ ЩОБ ПОБАЧИТИ ГРАФІК
+              </h2>
+            </div>
+          )}
+        </Container>
       </div>
-      <ChooseCategory />
-            {existCategory ? <Graph/> : <div className="report__placeholder"><h2 className="report__title">НАТИСНІТЬ НА КАТЕГОРІЮ ЩОБ ПОБАЧИТИ ГРАФІК</h2></div>}
-      </Container>
-    </div>
     </div>
   );
 }

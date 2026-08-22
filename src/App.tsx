@@ -5,8 +5,6 @@ import { lazy, Suspense } from "react";
 import { useAppSelector } from "./redux/dispatchHook";
 import { useEffect } from "react";
 import { RotateLoader } from "react-spinners";
-// import { onAuthStateChanged } from "firebase/auth";
-// import { authFireBase } from "./firebase/firebase";
 import { useAppDispatch } from "./redux/dispatchHook";
 import { checkAuth } from "./redux/Auth/authOperation";
 import { useState } from "react";
