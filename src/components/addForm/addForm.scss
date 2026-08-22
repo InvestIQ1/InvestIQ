@@ -123,6 +123,8 @@
     display: flex;
     gap: 15px;
     margin-top: 40px;
+    justify-content: center;
+    margin-bottom: 40px;
   }
   &__prize {
     width: 183px;
@@ -195,7 +197,7 @@
       align-items: center;
     }
     &__prize {
-      padding: 12px 20px 12px 0;
+      // padding: 12px 20px 12px 0;
       background-color: var(--background);
       border: 2px var(--background2) solid;
       width: 104px;

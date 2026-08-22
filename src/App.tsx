@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { lazy, Suspense } from "react";
 import { useAppSelector } from "./redux/dispatchHook";
 import { useEffect } from "react";
+import { RotateLoader } from "react-spinners";
 // import { onAuthStateChanged } from "firebase/auth";
 // import { authFireBase } from "./firebase/firebase";
 import { useAppDispatch } from "./redux/dispatchHook";
@@ -33,65 +34,76 @@ function AuthRedirect() {
 }
 
 function App() {
-const [theme, setTheme] = useState<Theme>(() => {
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-});
-
+  const [theme, setTheme] = useState<Theme>(() => {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  });
 
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(checkAuth());
   }, []);
 
-
   const toggleTheme = () => {
-    setTheme((current:string) => (current === "light" ? "dark" : "light"))
-  }
+    setTheme((current: string) => (current === "light" ? "dark" : "light"));
+  };
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
 
   return (
-  <ThemeContext.Provider value={{theme,toggleTheme}}>
-    <ToastContainer
-      position="top-right"
-      autoClose={3000}
-      hideProgressBar
-      closeOnClick
-      pauseOnHover
-      theme={theme}
-    />
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar
+        closeOnClick
+        pauseOnHover
+        theme={theme}
+      />
 
-    <Suspense fallback={<div>Завантаження</div>}>
-      <Routes>
-        <Route path="/" element={<AuthRedirect />} />
+      <Suspense
+        fallback={
+          <div
+            style={{
+              width: "100%",
+              minHeight: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <RotateLoader color="rgba(255, 117, 29, 1)" margin={25} size={20} />
+          </div>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<AuthRedirect />} />
 
-        <Route
-          path="/home"
-          element={
-            <PrivateRoute>
-              <HomePage />
-            </PrivateRoute>
-          }
-        />
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute>
+                <HomePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/report"
+            element={
+              <PrivateRoute>
+                <ReportPage />
+              </PrivateRoute>
+            }
+          />
 
-        <Route
-          path="/report"
-          element={
-            <PrivateRoute>
-              <ReportPage />
-            </PrivateRoute>
-          }
-        />
-
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Suspense>
-  </ThemeContext.Provider>
-);
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </Suspense>
+    </ThemeContext.Provider>
+  );
 }
 
 export default App;
