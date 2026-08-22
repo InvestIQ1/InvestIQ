@@ -40,7 +40,6 @@ export const addTransaction = createAsyncThunk(
       );
       return newTransaction;
     } catch (err: unknown) {
-      console.log(err);
 
       if (axios.isAxiosError(err)) {
         return thunkAPI.rejectWithValue(err.message);
