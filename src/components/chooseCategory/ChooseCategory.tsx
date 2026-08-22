@@ -19,7 +19,7 @@ import { selectCategory } from "../../redux/Category/categorySelector";
 import { selectNeededExpense, selectNeededIncome } from "../../redux/Transaction/transactionSelectors";
 import { changeCategory } from "../../redux/Category/categorySlice";
 import { useAppDispatch, useAppSelector } from "../../redux/dispatchHook";
-import type { Image } from "plotly.js";
+// import type { Image } from "plotly.js";
 
 export const ChooseCategory: React.FC = () => {
   const [isSpends, setIsSpends] = useState(true);
