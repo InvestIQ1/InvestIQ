@@ -1,14 +1,11 @@
 import "./nextPage.scss";
 import { IoIosStats } from "react-icons/io";
-// import  { useContext } from "react";
-// import { ThemeContext } from "../../context/ThemeContext";
 import { FaArrowLeft } from "react-icons/fa";
 import {NavLink, useLocation} from "react-router-dom";
 
 
 export const NextPage: React.FC = () => {
   const location = useLocation().pathname
-    // const context = useContext(ThemeContext);
 
     if (location === "/home") {
     return (

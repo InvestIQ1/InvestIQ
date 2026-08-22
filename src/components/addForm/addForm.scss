@@ -41,7 +41,6 @@
     background-color: var(--background2);
     padding: 17px 0 17px 19px;
     font-family: "Roboto", sans-serif;
-    // font-weight: 400;
     font-weight: 500;
 
     font-size: 12px;
@@ -59,7 +58,6 @@
     background-color: var(--background2);
     padding: 17px 0 17px 19px;
     font-family: "Roboto", sans-serif;
-    // font-weight: 400;
     font-weight: 500;
 
     font-size: 12px;
@@ -135,7 +133,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 20px;
   }
   &__prizeCounter {
     width: 100px;
@@ -149,7 +146,6 @@
     text-transform: uppercase;
     text-align: right;
     color: var(--text);
-    padding-right: 30px;
   }
   &__background {
     width: 100%;
@@ -197,7 +193,6 @@
       align-items: center;
     }
     &__prize {
-      // padding: 12px 20px 12px 0;
       background-color: var(--background);
       border: 2px var(--background2) solid;
       width: 104px;
@@ -257,19 +252,9 @@
 
   .addForm .container {
     display: flex;
-    // justify-content: center;
     align-items: center;
-    // gap: 100px;
   }
 }
-
-// @media (min-width: 929px) {
-//   .addForm {
-//     &__form {
-//       margin-left: 100px;
-//     }
-//   }
-// }
 
 @media (min-width: 1200px) {
   .addForm {
@@ -296,9 +281,6 @@
       margin-bottom: 15px;
       margin-left: 35px;
     }
-    // &__datawForm {
-    //   display: none;
-    // }
     &__paragraf {
       margin-bottom: -4px;
     }

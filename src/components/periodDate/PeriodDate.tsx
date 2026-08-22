@@ -1,30 +1,19 @@
 import { useState } from "react";
+
 import "./periodDate.scss"
 import {color, motion } from "motion/react";
 import { useAppSelector } from "../../redux/dispatchHook";
 import {selectTransactions} from "../../redux/Transaction/transactionSelectors"
-// import { Container } from "../container/Container"
 
 export const PeriodDate : React.FC = () => {
         const date : Date = new Date()
-            // const [chosenMonth, setChosenMonth] = useState<string>()
     const [monthNumber, setMonthNumber] = useState(date.getMonth())
     const [yearNumber, setYearNumber] = useState(date.getFullYear())
-    // const [direction, setDirection] = useState<0 | 1 | -1>(0);
     const monthNames : string[] = ["січень", "лютий", "березень", "квітень", "травень", "червень", "липень", "серпень", "вересень", "жовтень", "листопад", "грудень"];
 const lastTransaction = useAppSelector(selectTransactions).at(-1)
 const isIncome : boolean = lastTransaction?.type === "income"
 
 
-//     const changeMonth = (value: -1 | 1) => {
-//   setDirection(value);
-//   setMonthNumber(prev => prev + value);
-//   setChosenMonth(monthNames[monthNumber])
-// };
-
-// useEffect(() => {
-//     console.log(chosenMonth)
-// }, [chosenMonth])
 
     const showingDate = () => {
         if (monthNumber >= 12) {
@@ -44,34 +33,9 @@ const isIncome : boolean = lastTransaction?.type === "income"
             <motion.div className="Period" initial={{ opacity: 0 }} animate={{ opacity: 1 }}  >
                 <p className="Period__text">Поточний період</p>
                 <div className="Period__box">
-                    {/* <motion.button
-  whileTap={{ scale: 0.9 }}
-  type="button"
-  className="Period__button"
-  onClick={() => {
-    changeMonth(-1);
-  }}
-> <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M5.28064 0.624512L1.28064 5.62451L5.28064 10.6245" stroke="#FF751D" strokeWidth="2" />
-</svg> </motion.button> */}
   <h2
     key={monthNumber}
     className="Period__date"
-    // initial={{
-    //   x: direction * 50,
-    //   opacity: 0,
-    // }}
-    // animate={{
-    //   x: 0,
-    //   opacity: 1,
-    // }}
-    // exit={{
-    //   x: direction * -50,
-    //   opacity: 0,
-    // }}
-    // transition={{
-    //   duration: 0.25,
-    // }}
   >
     {showingDate()}
   </h2>
@@ -82,18 +46,6 @@ const isIncome : boolean = lastTransaction?.type === "income"
     Останній транзакція:   {isIncome ? <p style={{color:"#66c56c"}}>{lastTransaction?.descr}</p> : <p style={{color: "#ff6961"}}>{lastTransaction?.descr}</p>}
   </p>
 
-                    {/* <motion.button
-  whileTap={{ scale: 0.9 }}
-  type="button"
-  className="Period__button"
-  onClick={() => {
-    changeMonth(1);
-  }}
->
-  <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0.780884 0.624512L4.78088 5.62451L0.780884 10.6245" stroke="#FF751D" strokeWidth="2" />
-  </svg>
-</motion.button> */}
                 </div>
             </motion.div>
         </>
