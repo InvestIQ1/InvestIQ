@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import "./periodDate.scss"
-import {color, motion } from "motion/react";
+import { motion } from "motion/react";
 import { useAppSelector } from "../../redux/dispatchHook";
 import {selectTransactions} from "../../redux/Transaction/transactionSelectors"
 
