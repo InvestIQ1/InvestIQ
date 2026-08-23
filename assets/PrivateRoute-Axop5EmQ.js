@@ -1,1 +1,0 @@
-import{n as e,o as t}from"./dispatchHook-BgCkXnp9.js";import{a as n}from"./index-CpX3MqCh.js";var r=n();function i({children:n}){return e(e=>e.auth.user)?n:(0,r.jsx)(t,{to:`/`,replace:!0})}export{i as default};
