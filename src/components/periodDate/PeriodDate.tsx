@@ -10,9 +10,10 @@ export const PeriodDate : React.FC = () => {
     const [monthNumber, setMonthNumber] = useState(date.getMonth())
     const [yearNumber, setYearNumber] = useState(date.getFullYear())
     const monthNames : string[] = ["січень", "лютий", "березень", "квітень", "травень", "червень", "липень", "серпень", "вересень", "жовтень", "листопад", "грудень"];
-const lastTransaction = useAppSelector(selectTransactions).at(-1)
+const lastTransaction  = useAppSelector(selectTransactions).at(-1)
 const isIncome : boolean = lastTransaction?.type === "income"
-
+const isThereTransaction = lastTransaction === undefined
+console.log(isThereTransaction)
 
 
     const showingDate = () => {
@@ -39,12 +40,13 @@ const isIncome : boolean = lastTransaction?.type === "income"
   >
     {showingDate()}
   </h2>
-      <p
+  {isThereTransaction ? null :       <p
     className="Period__text"
 
     >
     Останній транзакція:   {isIncome ? <p style={{color:"#66c56c"}}>{lastTransaction?.descr}</p> : <p style={{color: "#ff6961"}}>{lastTransaction?.descr}</p>}
-  </p>
+  </p>}
+
 
                 </div>
             </motion.div>
